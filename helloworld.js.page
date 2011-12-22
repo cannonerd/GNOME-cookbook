@@ -13,12 +13,12 @@
         </credit>    
     </info>
 
-    <title>HelloWorld with launc icon</title>
+    <title>Hello World with launch icon</title>
 
     <synopsis>
     
         <p>
-            In this guide we'll construct a small progran, Hello World, using JavaScript and GTK. We'll also make a launch icon for the application. The guide will have the following parts:
+            In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launch icon for the application. The guide will have the following parts:
         </p>
         
         <list>
@@ -58,9 +58,9 @@ Gtk.main();
     </section>
            
     <section id=".desctop">
-        <title>HelloWorld.desctop</title>
-        <p>To have a refined application it must have an application launcher in the desctop. The .desktop file describes the application name, icon and various integration bits.</p>
-        <p>copy your .desctop file to here when it is functioning in your own folder~/.local/share/applications
+        <title>HelloWorld.desktop</title>
+        <p>To have a refined application it must have an application launcher in the desktop. The .desktop file describes the application name, icon and various integration bits.</p>
+        <p>copy your .desktop file to here when it is functioning in your own folder~/.local/share/applications
 </p>
     </section>
 </page>
