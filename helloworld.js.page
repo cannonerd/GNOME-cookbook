@@ -27,7 +27,7 @@
         </list> 
         
         <p>
-            This guide is a roadmap of a process which's outcome is an application. With this you will have principle ideas how to make a simple application that is seamlessly a part of your GNOME3.
+            This guide is a roadmap of a process, the outcome of which is an application. With this you will have principle ideas how to make a simple application that is seamlessly a part of your GNOME3.
         </p>
     </synopsis>
     
@@ -57,7 +57,7 @@ Gtk.main();
           ]]></code>
     </section>
            
-    <section id=".desctop">
+    <section id=".desktop">
         <title>HelloWorld.desktop</title>
         <p>To have a refined application it must have an application launcher in the desktop. The .desktop file describes the application name, icon and various integration bits.</p>
         <p>copy your .desktop file to here when it is functioning in your own folder~/.local/share/applications
