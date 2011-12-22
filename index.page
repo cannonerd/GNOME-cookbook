@@ -1,0 +1,9 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="index">
+
+    <info>    
+        <link type="guide" xref="helloworld.js" />
+    </info>
+    <title>GNOME JS CookBook</title>
+</page>
