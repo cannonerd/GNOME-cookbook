@@ -64,7 +64,7 @@ Version=1.0
 Encoding=UTF-8
 Name=HelloWorld
 Comment=Say Hello
-Exec=/home/susanna/Documents/GNOME/cookbook/helloworld.js
+Exec=helloworld.js
 Icon=accessories-calculator
 Terminal=false
 Type=Application
@@ -108,7 +108,7 @@ autoreconf --force --install]]></code>
 bin_SCRIPTS = helloworld.js
 # List of files to be distributed
 EXTRA_DIST=  \
-  $(bin_SCRIPTS)
+    $(bin_SCRIPTS)
 
 # The desktop files    
 desktopdir = $(datadir)/applications
