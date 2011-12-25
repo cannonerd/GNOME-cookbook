@@ -94,13 +94,34 @@ Categories=GNOME;GTK;accessories;]]></code>
             Makefile.am
             configure.ac       
          </p>
+         <p>autogen.sh</p>
+         <code mime="text/sh" style="numbered"><![CDATA[
+#!/bin/sh
+# This will run autoconf, automake, etc. for us
+autoreconf --force --install]]></code>
+         <p>Makefile.am</p>
+         <code mime="text/am" style="numbered"><![CDATA[
+# The actual runnable program is set to the SCRIPTS primitive. Prefix bin_ tells where to copy this
+bin_SCRIPTS = helloworld.js
+# List of files to be distributed
+EXTRA_DIST=  \
+    $(bin_SCRIPTS)
+
+# The desktop files    
+desktopdir = $(datadir)/applications
+desktop_DATA = helloworld.desktop]]></code>
+         <p>configure.ac</p>
+         <code mime="text/ac" style="numbered"><![CDATA[
+dnl This file is processed by autoconf to create a configure script
+AC_INIT([Hello World], 1.0)
+AM_INIT_AUTOMAKE
+AC_CONFIG_FILES(Makefile)
+AC_OUTPUT]]></code>
         <p>When you have all the 3 files with correct information and rights run these commands in terminal:</p>
             <list>
                 <item><p>$ ./autogen.sh </p></item>
-                <item><p> </p></item>
-                <item><p>$ automake --add-missing --foreign</p></item>
-                <item><p>$ ./configure</p></item>
-                <item><p>$ make</p></item>
+                <item><p>./configure --prefix=/usr/local</p></item>
+                <item><p>$ sudo make install</p></item>
             </list>
     </section>
 </page>
