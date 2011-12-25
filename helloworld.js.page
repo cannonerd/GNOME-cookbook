@@ -76,7 +76,7 @@ Icon=accessories-calculator
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;accessories;]]></code>
+Categories=GNOME;GTK;Utility;]]></code>
         <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
         <list>
         <item><p>Line 4: Name of the application</p></item>
