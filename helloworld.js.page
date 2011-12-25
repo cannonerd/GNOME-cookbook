@@ -24,6 +24,7 @@
         <list>
             <item><p> HelloWorld.js </p></item>
             <item><p> HelloWorld.desctop </p></item>
+            <item><p> HelloWorld and autotools </p></item>
         </list> 
         
         <p>
@@ -81,8 +82,13 @@ Categories=GNOME;GTK;accessories;]]></code>
         <item><p>Line 4: Name of the application</p></item>
         <item><p>Line 5: Specifies a short description of the item</p></item>
         <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
+        <item><p>Line 8: Specifies whether the command in the Exec key runs in a terminal window.</p></item>
         </list>
         <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications
 </p>
+    </section>
+    <section id="autotools">
+        <title>Hello World and autotools</title>
+        <p></p>
     </section>
 </page>
