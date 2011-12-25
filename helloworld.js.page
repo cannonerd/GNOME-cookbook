@@ -89,11 +89,15 @@ Categories=GNOME;GTK;accessories;]]></code>
     </section>
     <section id="autotools">
         <title>Hello World and autotools</title>
-        <p>make all the files </p>
-        <p>run :</p>
+        <p>make all the files
+            autogen.sh  when done with this, run $ chmod +x autogen.sh to give proper rights to autogen.sh file
+            Makefile.am
+            configure.ac       
+         </p>
+        <p>When you have all the 3 files with correct information and rights run these commands in terminal:</p>
             <list>
-                <item><p>$ aclocal</p></item>
-                <item><p>$ autoconf</p></item>
+                <item><p>$ ./autogen.sh </p></item>
+                <item><p> </p></item>
                 <item><p>$ automake --add-missing --foreign</p></item>
                 <item><p>$ ./configure</p></item>
                 <item><p>$ make</p></item>
