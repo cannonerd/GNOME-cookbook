@@ -86,6 +86,7 @@ Categories=GNOME;GTK;accessories;]]></code>
         </list>
         <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications
 </p>
+    <p> To put your application to the right category go see: http://standards.freedesktop.org/menu-spec/latest/apa.html</p>
     </section>
     <section id="autotools">
         <title>Hello World and autotools</title>

@@ -8,4 +8,4 @@ Icon=accessories-calculator
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;accessories;
+Categories=GNOME;GTK;Utility;TextEditor;
