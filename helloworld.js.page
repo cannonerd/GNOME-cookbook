@@ -1,43 +1,36 @@
 <page xmlns="http://projectmallard.org/1.0/"
-      type="topic"
-      id="helloworld.js">
+    type="topic"
+    id="helloworld.js">
 
-    <info>    
-        <link type="guide" xref="index#js"/>    
-        <desc> 'Hello World'application with a launch icon. This guide will help you create a 'Hello World' application which will be seamlesly a part of your desktop.
-        </desc>    
-        <revision pkgversion="0.1" version="0.1" date="2011-12-22" status="review"/>
-        <credit type="author">
-            <name>Susanna Huhtanen</name>
-            <email>ihmis.suski@gmail.com</email>
-        </credit>    
-    </info>
+  <info>    
+    <link type="guide" xref="index#js"/>    
+    <desc> 'Hello World'application with a launch icon. This guide will help you create a 'Hello World' application which will be seamlesly a part of your desktop.
+    </desc>    
+    <revision pkgversion="0.1" version="0.1" date="2011-12-22" status="review"/>
+    <credit type="author">
+      <name>Susanna Huhtanen</name>
+      <email>ihmis.suski@gmail.com</email>
+    </credit>    
+  </info>
 
-    <title>Hello World with launcher</title>
+  <title>Hello World with launcher</title>
 
-    <synopsis>
-    
-        <p>
-            In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launcher for the application. The guide will have the following parts:
-        </p>
-        
-        <list>
-            <item><p> HelloWorld.js </p></item>
-            <item><p> HelloWorld.desctop </p></item>
-            <item><p> HelloWorld and autotools </p></item>
-        </list> 
-        
-        <p>
-            This guide is a roadmap of a process, the outcome of which is an application. With this you will have principle ideas how to make a simple application that is seamlessly a part of your GNOME3.
-        </p>
-    </synopsis>
-    
-    <section id=".js">
-        <title>HelloWorld.js</title>
-        <p>
-            This a basic Hello World done with JS. 
-        </p>
-          <code mime="text/javascript" style="numbered"><![CDATA[
+  <synopsis>
+    <p>In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launcher for the application. The guide will have the following parts:</p>
+      
+    <list>
+      <item><p> HelloWorld.js </p></item>
+      <item><p> HelloWorld.desctop </p></item>
+      <item><p> HelloWorld and autotools </p></item>
+    </list> 
+      
+    <p>This guide is a roadmap of a process, the outcome of which is an application. With this you will have principle ideas how to make a simple application that is seamlessly a part of your GNOME3.</p>
+  </synopsis>
+  
+  <section id=".js">
+    <title>HelloWorld.js</title>
+    <p>This a basic Hello World done with JS.</p>
+      <code mime="text/javascript" style="numbered"><![CDATA[
 #!/usr/bin/gjs
 //The previous line is a hash bang tells how to run the script.
 // Note that the script has to be executable (run in terminal in the right folder: chmod +x scriptname)
@@ -59,13 +52,13 @@ label.show();
 mywindow.show();
 //and run it
 Gtk.main();]]></code>
-    </section>
-           
-    <section id=".desktop">
-        <title>HelloWorld.desktop</title>
-        <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working application integration to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>.</p>
-        <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
-        <code mime="text/desktop" style="numbered"><![CDATA[
+  </section>
+         
+  <section id=".desktop">
+    <title>HelloWorld.desktop</title>
+    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working application integration to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>.</p>
+    <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
+    <code mime="text/desktop" style="numbered"><![CDATA[
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -77,52 +70,62 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Utility;]]></code>
-        <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
-        <list>
-        <item><p>Line 4: Name of the application</p></item>
-        <item><p>Line 5: Specifies a short description of the item</p></item>
-        <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
-        <item><p>Line 8: Specifies whether the command in the Exec key runs in a terminal window.</p></item>
-        </list>
-        <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications
-</p>
-    <p> To put your application to the right category go see: http://standards.freedesktop.org/menu-spec/latest/apa.html</p>
-    </section>
-    <section id="autotools">
-        <title>Hello World and autotools</title>
-        <p>make all the files
-            autogen.sh  when done with this, run $ chmod +x autogen.sh to give proper rights to autogen.sh file
-            Makefile.am
-            configure.ac       
-         </p>
-         <p>autogen.sh</p>
-         <code mime="text/sh" style="numbered"><![CDATA[
+    <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
+    <list>
+      <item><p>Line 4: Name of the application</p></item>
+      <item><p>Line 5: Specifies a short description of the item</p></item>
+      <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
+      <item><p>Line 8: Specifies whether the command in the Exec key runs in a terminal window.</p></item>
+      </list>
+    <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
+    <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec'</link></p>
+  </section>
+  <section id="autotools">
+    <title>Hello World and autotools</title>
+    <p>Make all the files</p>
+    <list>
+      <item><p>autogen.sh  when done with this, run</p> 
+      <screen>
+        <output style="prompt">$ </output><input>chmod +x autogen.sh</input>
+      </screen> 
+      <p>to give proper rights to autogen.sh file</p></item>
+      <item><p>Makefile.am</p></item>
+      <item><p>configure.ac</p></item>
+      <item><p>AUTHORS</p></item> 
+      <item><p>COPYING</p></item>
+      <item><p>INSTALL</p></item>
+      <item><p>NEWS</p></item>
+      <item><p>ChangeLog</p></item>      
+   </list>
+   <p>autogen.sh</p>
+   <code mime="text/sh" style="numbered"><![CDATA[
 #!/bin/sh
 # This will run autoconf, automake, etc. for us
 autoreconf --force --install]]></code>
-         <p>Makefile.am</p>
-         <code mime="text/am" style="numbered"><![CDATA[
+   <p>Makefile.am</p>
+   <code mime="text/am" style="numbered"><![CDATA[
 # The actual runnable program is set to the SCRIPTS primitive. Prefix bin_ tells where to copy this
 bin_SCRIPTS = helloworld.js
 # List of files to be distributed
 EXTRA_DIST=  \
-    $(bin_SCRIPTS)
+  $(bin_SCRIPTS)
 
 # The desktop files    
 desktopdir = $(datadir)/applications
 desktop_DATA = helloworld.desktop]]></code>
-         <p>configure.ac</p>
-         <code mime="text/ac" style="numbered"><![CDATA[
+   <p>configure.ac</p>
+   <code mime="text/ac" style="numbered"><![CDATA[
 dnl This file is processed by autoconf to create a configure script
 AC_INIT([Hello World], 1.0)
 AM_INIT_AUTOMAKE
 AC_CONFIG_FILES(Makefile)
 AC_OUTPUT]]></code>
-        <p>When you have all the 3 files with correct information and rights run these commands in terminal:</p>
-            <list>
-                <item><p>$ ./autogen.sh </p></item>
-                <item><p>./configure --prefix=/usr/local</p></item>
-                <item><p>$ sudo make install</p></item>
-            </list>
-    </section>
+   <p>When you have all the 3 files with correct information and rights run these commands in terminal:</p>
+   <screen>
+     <output style="prompt">$ </output><input>./autogen.sh</input>
+     <output style="prompt">$ </output><input>./configure --prefix=/usr/local</input>
+     <output style="prompt">$ </output><input>sudo make install</input>
+   </screen>
+   <note><p>If you want to clean autogenerated files use git clean -n and then git clean -f. THIS WILL DESTROY EVERY FILE THAT DOES NOT EXIST IN YOUR GIT! BE WARNED</p></note>
+  </section>
 </page>
