@@ -13,12 +13,12 @@
         </credit>    
     </info>
 
-    <title>Hello World with launch icon</title>
+    <title>Hello World with launcher</title>
 
     <synopsis>
     
         <p>
-            In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launch icon for the application. The guide will have the following parts:
+            In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launcher for the application. The guide will have the following parts:
         </p>
         
         <list>
@@ -37,13 +37,16 @@
             This a basic Hello World done with JS. 
         </p>
           <code mime="text/javascript" style="numbered"><![CDATA[
+#!/usr/bin/gjs
+//The previous line is a hash bang tells how to run the script.
+// Note that the script has to be executable (run in terminal in the right folder: chmod +x scriptname)
+
 var Gtk, mywindow, label;
 
 Gtk = imports.gi.Gtk;
 // Initialize the gtk
 Gtk.init(null, 0);
-//create your window, name it and connect the x to quit function. 
-//Remember that window is a taken word
+//create your window, name it and connect the x to quit function. Remember that window is a taken word
 mywindow = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
 mywindow.title = "Hello World!";
 mywindow.connect("destroy", function(){Gtk.main_quit()});
@@ -54,14 +57,13 @@ mywindow.add(label);
 label.show();
 mywindow.show();
 //and run it
-Gtk.main();
-          ]]></code>
+Gtk.main();]]></code>
     </section>
            
     <section id=".desktop">
         <title>HelloWorld.desktop</title>
-        <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working application integration to GNOME 3. requires a desktop launcher. For this you need to create a .desktop file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to .desktop file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link></p>
-        <p>The example shows you the minimum requirements for a .desktop file. </p>
+        <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working application integration to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>.</p>
+        <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
         <code mime="text/desktop" style="numbered"><![CDATA[
 [Desktop Entry]
 Version=1.0
@@ -73,9 +75,14 @@ Icon=accessories-calculator
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;accessories;
-        ]]></code>
-        <p>If you want your .desktop file to exist as a part of the system, copy your .desktop file to here ~/.local/share/applications
+Categories=GNOME;GTK;accessories;]]></code>
+        <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
+        <list>
+        <item><p>Line 4: Name of the application</p></item>
+        <item><p>Line 5: Specifies a short description of the item</p></item>
+        <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
+        </list>
+        <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications
 </p>
     </section>
 </page>
