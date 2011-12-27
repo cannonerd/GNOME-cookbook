@@ -53,12 +53,11 @@ mywindow.show();
 //and run it
 Gtk.main();]]></code>
   </section>
-<!-- TODO: How to make a custom icon -->
   <section id=".desktop">
     <title>HelloWorld.desktop</title>
-    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working application integration to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>.</p>
-    <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
-    <code mime="text/desktop" style="numbered"><![CDATA[
+    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working <link href= "http://library.gnome.org/admin/system-admin-guide/stable/mimetypes-9.html.en">application integration </link>to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>. </p>
+  <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
+  <code mime="text/desktop" style="numbered"><![CDATA[
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -70,15 +69,21 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Utility;]]></code>
-    <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
-    <list>
-      <item><p>Line 4: Name of the application</p></item>
-      <item><p>Line 5: Specifies a short description of the item</p></item>
-      <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
-      <item><p>Line 8: Specifies whether the command in the Exec key runs in a terminal window.</p></item>
-      </list>
-    <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
-    <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec'</link></p>
+  <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
+  <list>
+    <item><p>Line 4: Name of the application</p></item>
+    <item><p>Line 5: Specifies a short description of the item</p></item>
+    <item><p>Line 6: Specifies a command to execute when you choose the item from the menu. In this example exec just tels where to find the <code>helloworld.js</code> file and the file takes care of the rest.</p></item>
+    <item><p>Line 8: Specifies whether the command in the Exec key runs in a terminal window.</p></item>
+  </list>
+  <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
+  <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec</link>.</p>
+  <!-- TODO: How to make a custom icon -->
+  <p>In this example I used a existing icon. For a custom icon you must store the icon in folders 
+  Option file
+/usr/share/icons/option-name
+Image files
+/usr/share/icons/option-name/icons/*.* . It is recommended that you supply 16x16 and 48x48 icons for your application.</p>  
   </section>
   <section id="autotools">
     <title>Hello World and autotools</title>
