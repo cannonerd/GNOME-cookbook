@@ -64,7 +64,7 @@ Encoding=UTF-8
 Name=HelloWorld
 Comment=Say Hello
 Exec=helloworld.js
-Icon=accessories-calculator
+Icon=application-default-icon
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -83,7 +83,7 @@ Categories=GNOME;GTK;Utility;]]></code>
   Option file
 /usr/share/icons/option-name
 Image files
-/usr/share/icons/option-name/icons/*.* . It is recommended that you supply 16x16 and 48x48 icons for your application.</p>  
+/usr/share/icons/option-name/icons/*.* . It is recommended that you supply 16x16 and 48x48 icons for your application. More information in icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link></p>  
   </section>
   <section id="autotools">
     <title>Hello World and autotools</title>
