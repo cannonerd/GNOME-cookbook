@@ -4,7 +4,7 @@
 
   <info>    
     <link type="guide" xref="index#js"/>    
-    <desc> 'Hello World'application with a launch icon. This guide will help you create a 'Hello World' application which will be seamlesly a part of your desktop.
+    <desc> 'Hello World'application with a launch icon and guidance to usage of autotools. This guide will help you create a 'Hello World' application which seamlesly will be a part of your desktop.
     </desc>    
     <revision pkgversion="0.1" version="0.1" date="2011-12-22" status="review"/>
     <credit type="author">
@@ -16,7 +16,7 @@
   <title>Hello World with launcher</title>
 
   <synopsis>
-    <p>In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll also make a launcher for the application. The guide will have the following parts:</p>
+    <p>In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll make a launcher icon for the application and create the necessary autotools to build your project. This guide will have the following parts:</p>
       
     <list>
       <item><p> HelloWorld.js </p></item>
@@ -24,12 +24,12 @@
       <item><p> HelloWorld and autotools </p></item>
     </list> 
       
-    <p>This guide is a roadmap of a process, the outcome of which is an application. With this you will have principle ideas how to make a simple application that is seamlessly a part of your GNOME3.</p>
+    <p>To do and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
   </synopsis>
   
   <section id=".js">
     <title>HelloWorld.js</title>
-    <p>This a basic Hello World done with JS.</p>
+    <p>This a basic Hello World done with JavaScript. If you are unfamiliar with JavaScript, read <link href="http://eloquentjavascript.net/contents.html">Eloquent JavaScript</link> or your preferred guide to JavaScript. </p>
       <code mime="text/javascript" style="numbered"><![CDATA[
 #!/usr/bin/gjs
 //The previous line is a hash bang tells how to run the script.
@@ -55,7 +55,7 @@ Gtk.main();]]></code>
   </section>
   <section id=".desktop">
     <title>HelloWorld.desktop</title>
-    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working <link href= "http://library.gnome.org/admin/system-admin-guide/stable/mimetypes-9.html.en">application integration </link>to GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>. </p>
+    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working <link href= "http://library.gnome.org/admin/system-admin-guide/stable/mimetypes-9.html.en">application integration </link>in GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>. </p>
   <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
   <code mime="text/desktop" style="numbered"><![CDATA[
 [Desktop Entry]
@@ -69,7 +69,7 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Utility;]]></code>
-  <p>Now let's go through each part of the  <code>.desktop</code> file.</p>
+  <p>Now let's go through some parts of the  <code>.desktop</code> file.</p>
   <list>
     <item><p>Line 4: Name of the application</p></item>
     <item><p>Line 5: Specifies a short description of the item</p></item>
@@ -79,21 +79,16 @@ Categories=GNOME;GTK;Utility;]]></code>
   <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
   <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec</link>.</p>
   <!-- TODO: How to make a custom icon -->
-  <p>In this example I used a existing icon. For a custom icon you must store the icon in folders 
-  Option file
-/usr/share/icons/option-name
-Image files
-/usr/share/icons/option-name/icons/*.* . It is recommended that you supply 16x16 and 48x48 icons for your application. More information in icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link></p>  
+  <p>In this example I used a existing icon. For a custom icon you must store the icon in folder $ dir /usr/share/icons/gnome/48x48/apps
+. It is recommended that you supply 16x16 and 48x48 icons for your application. More information in icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link> and <link href="https://live.gnome.org/GnomeGoals/AppIcon">here</link>.</p>  
   </section>
+  
   <section id="autotools">
     <title>Hello World and autotools</title>
-    <p>Make all the files</p>
+    <p>To make your application truly a part of the GNOME 3. system you need to install it with the help of autotools. The autotools build will install all the necessary files to all the right places. </p>
+    <p>For this you need to have the following files:</p>
     <list>
-      <item><p>autogen.sh  when done with this, run</p> 
-      <screen>
-        <output style="prompt">$ </output><input>chmod +x autogen.sh</input>
-      </screen> 
-      <p>to give proper rights to autogen.sh file</p></item>
+      <item><p>autogen.sh</p></item>
       <item><p>Makefile.am</p></item>
       <item><p>configure.ac</p></item>
       <item><p>AUTHORS</p></item> 
@@ -108,6 +103,7 @@ Image files
 #!/bin/sh
 # This will run autoconf, automake, etc. for us
 autoreconf --force --install]]></code>
+    <p>After the autogen.sh file is ready and saved run</p><screen> <output style="prompt">$                 </output><input>chmod +x autogen.sh</input></screen><p>to give the file the necessary rights to install.</p>
     <p>Makefile.am</p>
     <code mime="text/am" style="numbered"><![CDATA[
 # The actual runnable program is set to the SCRIPTS primitive. Prefix bin_ tells where to copy this
