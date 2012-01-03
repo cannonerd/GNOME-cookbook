@@ -1,1 +1,5 @@
 Pictures in this file are by piotrekp from http://gnome-look.org/content/show.php/Humanity+Weather+Icons?content=115099 licensed under GPL
+
+Running:
+
+GJS_PATH=`pwd` gjs weather

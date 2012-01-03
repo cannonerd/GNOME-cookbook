@@ -4,48 +4,48 @@
 
 var Gtk, weatherwindow, label1, label2, label3;
 
-const Soup = imports.gi.Soup;
+const GeoNames = imports.geonames;
+//Bring your own library from same folder (as set in GJS_PATH). If using autotools .desktop will take care of this
+
 Gtk = imports.gi.Gtk;
 // Initialize the gtk
 Gtk.init(null, 0);
 //create your window, name it and connect the x to quit function. Remember that window is a taken word
 weatherwindow = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
 weatherwindow.title = "Todays weather";
+//Window only accepts one widget and a title. Further structure with Gtk.boxes of similar
 weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //some icons
-var brokenClouds = new Gtk.Image();
-var wind = new Gtk.Image();
-brokenClouds.file = "weather-few-clouds.svg";
-wind.file = "weather-fog.svg";
-//http://gnome-look.org/content/show.php/Humanity+Weather+Icons?content=115099
-//some weather
-var session = new Soup.SessionSync();
-var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=EFHF&username=ihmissuski');
-//http://www.geonames.org/export/JSON-webservices.html
-var status = session.send_message(request);
-if (status === 200) {
-  // Request was OK
-  var weatherJSON = request.response_body.data;
-  var weather = JSON.parse(weatherJSON);
+//TODO: clouds/conditon image selector probably as its own library
+var weatherIcon = new Gtk.Image();
 
-  //Set some text to your window
-  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees."});
-  label2 = new Gtk.Label({label: "Looks like there is " + weather.weatherObservation.clouds + " in the sky."});   
-  label3 = new Gtk.Label({label: "Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
-} 
-  else {
-  label1 = new Gtk.Label({label: "Failed getting the weather"});
-}
+//Set some labels to your window
+label1 = new Gtk.Label({label: ""});
+label2 = new Gtk.Label({label: "Looking in the sky..."});   
+label3 = new Gtk.Label({label: ""});
+//TODO: rethink the boxes
 var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 weatherwindow.add(weather_box);
 weather_box.pack_start(label1, false, false, 0);
-
 weather_box.pack_start(label2, false, false, 0);
-weather_box.pack_start(brokenClouds, false, false, 0);
+weather_box.pack_start(weatherIcon, false, false, 0);
 weather_box.pack_start(label3, false, false, 0);
-weather_box.pack_start(wind, false, false, 0);
 //show everything you have done
 weather_box.show_all();
 weatherwindow.show();
+
+//some weather
+//TODO: ask for ICAO code, link to the get button click.
+var icao = "EHAM"; //"EFHF";
+GeoNames.getWeather(icao, function(weather) {
+//this here works bit like signals. This code will be run when we have weather.
+  weatherIcon.file = GeoNames.getIcon(weather);
+  
+  label1.set_text("Temperature is" + weather.weatherObservation.temperature + " degrees.");
+  label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");   
+  label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
+  // ...
+});
+
 //and run it
 Gtk.main();
