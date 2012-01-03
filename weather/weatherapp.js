@@ -12,6 +12,10 @@ Gtk.init(null, 0);
 weatherwindow = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
 weatherwindow.title = "Todays weather";
 weatherwindow.connect("destroy", function(){Gtk.main_quit()});
+//some icons
+var brokenClouds = new Gtk.Image();
+brokenClouds.file = "weather-few-clouds.svg";
+//http://gnome-look.org/content/show.php/Humanity+Weather+Icons?content=115099
 //some weather
 var session = new Soup.SessionSync();
 var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=EFHF&username=ihmissuski');
@@ -23,14 +27,16 @@ if (status === 200) {
   var weather = JSON.parse(weatherJSON);
 
   //Set some text to your window
-  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees. Looks like there is " + weather.weatherObservation.clouds + " in the sky. Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
+  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees.\nLooks like there is " + weather.weatherObservation.clouds + " in the sky." + brokenClouds + "\nWindspeed is " + weather.weatherObservation.windSpeed + " m/s"});
 } 
   else {
   label1("Failed getting the weather");
 }
   weatherwindow.add(label1);
+  weatherwindow.add(brokenClouds);
   //show everything you have done
   label1.show();
+  brokenClouds.show();
 
 weatherwindow.show();
 //and run it
