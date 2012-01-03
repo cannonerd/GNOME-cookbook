@@ -49,3 +49,5 @@ GeoNames.getWeather(icao, function(weather) {
 
 //and run it
 Gtk.main();
+
+//TODO: A map that shows every weather station(at first just ICAOs) with a small wind arrow pointing the wind direction. Clicking on the stations will show you that stations weather. Somewhat a be your own meteorologis app.
