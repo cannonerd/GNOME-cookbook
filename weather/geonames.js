@@ -13,6 +13,7 @@ function getWeather(station, callback) {
     }
     // Request was OK
     var weatherJSON = request.response_body.data;
+    //TODO: parse metar ourselves as geonames is too optimistic
     var weather = JSON.parse(weatherJSON);
     callback(weather);
   });
@@ -21,7 +22,7 @@ function getWeather(station, callback) {
 function getIcon(weather){
   print (JSON.stringify(weather));
   // TODO: First switch for condition to see if there is "interesting" weather
-  
+  //switch (weather.weatherObservation.weatherCondition){}
   // If not, then we check for clouds
   //TODO:compelete the swich board
   switch (weather.weatherObservation.clouds){
