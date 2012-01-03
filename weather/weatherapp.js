@@ -14,7 +14,9 @@ weatherwindow.title = "Todays weather";
 weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //some icons
 var brokenClouds = new Gtk.Image();
+var wind = new Gtk.Image();
 brokenClouds.file = "weather-few-clouds.svg";
+wind.file = "weather-fog.svg";
 //http://gnome-look.org/content/show.php/Humanity+Weather+Icons?content=115099
 //some weather
 var session = new Soup.SessionSync();
@@ -32,21 +34,18 @@ if (status === 200) {
   label3 = new Gtk.Label({label: "Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
 } 
   else {
-  label1("Failed getting the weather");
+  label1 = new Gtk.Label({label: "Failed getting the weather"});
 }
 var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 weatherwindow.add(weather_box);
-weather_box.add(label1);
-weather_box.add(label2);
-weather_box.add(brokenClouds);
-weather_box.add(label3);
-//show everything you have done
-label1.show();
-label2.show();
-brokenClouds.show();
-label3.show();
+weather_box.pack_start(label1, false, false, 0);
 
-weather_box.show();
+weather_box.pack_start(label2, false, false, 0);
+weather_box.pack_start(brokenClouds, false, false, 0);
+weather_box.pack_start(label3, false, false, 0);
+weather_box.pack_start(wind, false, false, 0);
+//show everything you have done
+weather_box.show_all();
 weatherwindow.show();
 //and run it
 Gtk.main();
