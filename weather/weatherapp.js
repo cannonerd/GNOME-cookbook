@@ -15,6 +15,7 @@ weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //some weather
 var session = new Soup.SessionSync();
 var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=EFHF&username=ihmissuski');
+//http://www.geonames.org/export/JSON-webservices.html
 var status = session.send_message(request);
 if (status === 200) {
   // Request was OK
