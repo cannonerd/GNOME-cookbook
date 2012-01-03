@@ -2,7 +2,7 @@
 //The previous line is a hash bang tells how to run the script.
 // Note that the script has to be executable (run in terminal in the right folder: chmod +x scriptname)
 
-var Gtk, mywindow, label1;
+var Gtk, weatherwindow, label1, label2, label3;
 
 const Soup = imports.gi.Soup;
 Gtk = imports.gi.Gtk;
@@ -27,17 +27,26 @@ if (status === 200) {
   var weather = JSON.parse(weatherJSON);
 
   //Set some text to your window
-  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees.\nLooks like there is " + weather.weatherObservation.clouds + " in the sky." + brokenClouds + "\nWindspeed is " + weather.weatherObservation.windSpeed + " m/s"});
+  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees."});
+  label2 = new Gtk.Label({label: "Looks like there is " + weather.weatherObservation.clouds + " in the sky."});   
+  label3 = new Gtk.Label({label: "Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
 } 
   else {
   label1("Failed getting the weather");
 }
-  weatherwindow.add(label1);
-  weatherwindow.add(brokenClouds);
-  //show everything you have done
-  label1.show();
-  brokenClouds.show();
+var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+weatherwindow.add(weather_box);
+weather_box.add(label1);
+weather_box.add(label2);
+weather_box.add(brokenClouds);
+weather_box.add(label3);
+//show everything you have done
+label1.show();
+label2.show();
+brokenClouds.show();
+label3.show();
 
+weather_box.show();
 weatherwindow.show();
 //and run it
 Gtk.main();
