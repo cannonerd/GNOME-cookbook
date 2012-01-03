@@ -2,7 +2,7 @@
 //The previous line is a hash bang tells how to run the script.
 // Note that the script has to be executable (run in terminal in the right folder: chmod +x scriptname)
 
-var Gtk, mywindow, label1, label2, label3;
+var Gtk, mywindow, label1;
 
 const Soup = imports.gi.Soup;
 Gtk = imports.gi.Gtk;
@@ -22,7 +22,7 @@ if (status === 200) {
   var weather = JSON.parse(weatherJSON);
 
   //Set some text to your window
-  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees. Sky is " + weather.weatherObservation.clouds + ". Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
+  label1 = new Gtk.Label({label: "Temperature is " + weather.weatherObservation.temperature + " degrees. Looks like there is " + weather.weatherObservation.clouds + " in the sky. Windspeed is " + weather.weatherObservation.windSpeed + " m/s"});
 } 
   else {
   label1("Failed getting the weather");
