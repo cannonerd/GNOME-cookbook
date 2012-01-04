@@ -15,8 +15,7 @@ weatherwindow = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
 weatherwindow.title = "Todays weather";
 //Window only accepts one widget and a title. Further structure with Gtk.boxes of similar
 weatherwindow.connect("destroy", function(){Gtk.main_quit()});
-//some icons
-//TODO: clouds/conditon image selector probably as its own library
+//We initialize the icon here, but deside the file later in geonames.js.
 var weatherIcon = new Gtk.Image();
 
 //Set some labels to your window
@@ -48,7 +47,6 @@ GeoNames.getWeather(icao, function(weather) {
   else {
     label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");
   }
-    
   label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
   // ...
 });
