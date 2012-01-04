@@ -1,9 +1,0 @@
-page
-
-Running:
-
-$ GJS_PATH=`pwd` gjs weather
-
-use this command on terminal while adjusting your modules. This way your program knows where to finl your custom JSlibraries
-
-Main window will only accept 1 widget, plan your structure accordingly(using Gtk.Box)

@@ -1,0 +1,42 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    type="topic"
+    id="weatherapp.js">
+
+  <info>    
+    <link type="guide" xref="index#js"/>    
+    <desc> How to get information over the internet asynchronously so that your application will not halt if you have a sudden loss on connection to the internet. Asynchronous models will be presented through a weather showing application.
+    </desc>    
+    <revision pkgversion="0.1" version="0.1" date="2012-01-04" status="review"/>
+    <credit type="author">
+      <name>Susanna Huhtanen</name>
+      <email>ihmis.suski@gmail.com</email>
+    </credit>    
+  </info>
+
+  <title>Weather application with asynchronous calls</title>  
+  <synopsis>
+    <p>In this guide well construct a weather application using asynchronous calls. The weather information in this example is fetched from geonames.org and is using the ICAO codes to place your weather request. In this guide we weill go through the following parts:</p>
+      
+    <list>
+      <item><p> planning ui</p></item>
+      <item><p> weatherapp.js</p></item>
+      <item><p> geonames.js </p></item>
+      <item><p> Asynchronous calls</p></item>
+      <item><p> Autotools</p></item>
+    </list> 
+      
+    <p>To do and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
+  </synopsis>
+  <section id ="geonames.js">
+  <p>Running:
+
+  $ GJS_PATH=`pwd` gjs weather
+
+  use this command on terminal while adjusting your modules. This way your program knows where to find your custom JSlibraries
+  </p>
+  </section>
+  <section id ="planningUi">
+  <p> Main window will only accept 1 widget, plan your structure accordingly(using Gtk.Box)</p>
+  </section>
+</page>
+

@@ -4,6 +4,7 @@
 
     <info>    
         <link type="guide" xref="helloworld.js" />
+        <link type="guide" xref="weatherapp.js" />
     </info>
     <title>GNOME JS CookBook</title>
 </page>
