@@ -42,7 +42,13 @@ GeoNames.getWeather(icao, function(weather) {
   weatherIcon.file = GeoNames.getIcon(weather);
   
   label1.set_text("Temperature is" + weather.weatherObservation.temperature + " degrees.");
-  label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");   
+  if (weather.weatherObservation.weatherCondition !== "n/a"){
+    label2.set_text("Looks like there is " + weather.weatherObservation.weatherCondition + " in the sky.");
+    }
+  else {
+    label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");
+  }
+    
   label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
   // ...
 });
