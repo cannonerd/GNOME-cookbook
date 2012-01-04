@@ -21,7 +21,6 @@ function getWeather(station, callback) {
 
 function getIcon(weather){
   print (JSON.stringify(weather));
-  // TODO: First switch for condition to see if there is "interesting" weather
   switch (weather.weatherObservation.weatherCondition){
   case "drizzle":
     return "weather-showers-scattered.svg";
@@ -30,6 +29,7 @@ function getIcon(weather){
   case "snow": 
   case "snow grains":
     return "weather-snow.svg"; 
+    // TODO: First switch for condition to see if there is "interesting" weather
 //condition.IC=ice crystals 
 //condition.PL=ice pellets 
 //condition.GR=hail 
@@ -51,7 +51,6 @@ function getIcon(weather){
 //condition.+FC=tornado/waterspout
   }
   // If not, then we check for clouds
-  //TODO:compelete the swich board
   switch (weather.weatherObservation.clouds){
     case "few clouds":
     case "scattered clouds":
