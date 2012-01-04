@@ -27,16 +27,20 @@
       
     <p>To do and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
   </synopsis>
+    <section id ="planningUi">
+  <p> Main window will only accept 1 widget, plan your structure accordingly(using Gtk.Box)</p>
+  </section>
+      <section id ="Asynhronous">
+  <p> Structuring your application to be asynchronous rather than synchronous is a big asset for you. When differet parts of your program can take their own time rather than halt everything makes your application more flexible. Every time something is fetched over the internet it should be with a asynchronous call. As a coding prinsiple thinking for example that a HTTP request is a unreliable reguest and it should not interfere with the running of the program. Asnhronity should be thought to work bit like recursive calls.</p>
+  </section>
   <section id ="geonames.js">
-  <p>Running:
+  <p>Running untill you have all the autotools files ready. :
 
   $ GJS_PATH=`pwd` gjs weather
 
-  use this command on terminal while adjusting your modules. This way your program knows where to find your custom JSlibraries
+  use this command on terminal while developing your modules. When calling your program in this manner it knows where to find your custom JSlibraries.
   </p>
   </section>
-  <section id ="planningUi">
-  <p> Main window will only accept 1 widget, plan your structure accordingly(using Gtk.Box)</p>
-  </section>
+
 </page>
 
