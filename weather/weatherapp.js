@@ -23,14 +23,20 @@ label1 = new Gtk.Label({label: ""});
 label2 = new Gtk.Label({label: "Looking in the sky..."});   
 label3 = new Gtk.Label({label: ""});
 //TODO: rethink the boxes
-var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
 weatherwindow.add(weather_box);
-weather_box.pack_start(label1, false, false, 0);
-weather_box.pack_start(label2, false, false, 0);
-weather_box.pack_start(weatherIcon, false, false, 0);
-weather_box.pack_start(label3, false, false, 0);
+var weather_label = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+var weather_icon = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+weather_box.pack_start(weather_label, false, false, 0);
+weather_box.pack_start(weather_icon, true, true, 0);
+weather_label.add(label1, false, false, 0);
+weather_label.add(label2, false, false, 0);
+weather_label.add(label3, false, false, 0);
+weather_icon.add(weatherIcon, true, true, 0);
 //show everything you have done
 weather_box.show_all();
+weather_label.show_all();
+weather_icon.show_all();
 weatherwindow.show();
 
 //some weather
@@ -40,7 +46,7 @@ GeoNames.getWeather(icao, function(weather) {
 //this here works bit like signals. This code will be run when we have weather.
   weatherIcon.file = GeoNames.getIcon(weather);
   
-  label1.set_text("Temperature is" + weather.weatherObservation.temperature + " degrees.");
+  label1.set_text("Temperature is " + weather.weatherObservation.temperature + " degrees.");
   if (weather.weatherObservation.weatherCondition !== "n/a"){
     label2.set_text("Looks like there is " + weather.weatherObservation.weatherCondition + " in the sky.");
     }

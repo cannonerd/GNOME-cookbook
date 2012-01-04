@@ -22,9 +22,10 @@ function getWeather(station, callback) {
 function getIcon(weather){
   print (JSON.stringify(weather));
   switch (weather.weatherObservation.weatherCondition){
-  //TODO: metar words list, check this to be up to date
+  //TODO: metar words list, try to work out the words, no one seems to know. Own metar parser on the way..
   case "drizzle":
   case "light showers rain":
+  case "light rain":
     return "weather-showers-scattered.svg";
   case "rain":
     return "weather-showers.svg";
