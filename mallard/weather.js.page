@@ -53,7 +53,7 @@ weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //We initialize the icon here, but deside the file later in geonames.js.
 var weatherIcon = new Gtk.Image();
 
-//Set some labels to your window
+//Set some labels to your window, these will be replaced when geonames.js has provided us data for geonames.getweather
 label1 = new Gtk.Label({label: ""});
 label2 = new Gtk.Label({label: "Looking in the sky..."});   
 label3 = new Gtk.Label({label: ""});
@@ -79,7 +79,8 @@ weatherwindow.show();
 //var entry = new Gtk.Entry(); why does this blow everything up?
 var icao = "EFHF"; //"EFHF";
 GeoNames.getWeather(icao, function(weather) {
-//this here works bit like signals. This code will be run when we have weather.
+//this here works bit like signals. This code will be run when we have weather from geonames.js function getWeather
+
   weatherIcon.file = GeoNames.getIcon(weather);
   
   label1.set_text("Temperature is " + weather.weatherObservation.temperature + " degrees.");
@@ -154,7 +155,7 @@ function getIcon(weather){
 
   $ GJS_PATH=`pwd` gjs weather
 
-  use this command on terminal while developing your modules. When calling your program in this manner it knows where to find your custom JSlibraries.
+  use this command on terminal while developing your modules. When calling your program in this manner it knows where to find your custom JSlibraries, in this case geonames.js.
   </p>
   </section>
 
