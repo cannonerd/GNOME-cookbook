@@ -3,6 +3,7 @@ const Soup = imports.gi.Soup;
 function getWeather(station, callback) {
   //some weather
   var session = new Soup.SessionAsync();
+  //TODO: Change username to global username instead of personal
   var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=' + station + '&username=ihmissuski');
   //http://www.geonames.org/export/JSON-webservices.html
   session.queue_message(request, function(session, message) {

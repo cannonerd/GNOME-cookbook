@@ -34,6 +34,56 @@
   <p> Structuring your application to be asynchronous rather than synchronous is a big asset for you. When differet parts of your program can take their own time rather than halt everything makes your application more flexible. Every time something is fetched over the internet it should be with a asynchronous call. As a coding prinsiple thinking for example that a HTTP request is a unreliable reguest and it should not interfere with the running of the program. Asnhronity should be thought to work bit like recursive calls.</p>
   </section>
   <section id ="geonames.js">
+  <code>
+const Soup = imports.gi.Soup;
+
+function getWeather(station, callback) {
+  //some weather
+  var session = new Soup.SessionAsync();
+  //TODO: Change username to global username instead of personal
+  var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=' + station + '&username=ihmissuski');
+  //http://www.geonames.org/export/JSON-webservices.html
+  session.queue_message(request, function(session, message) {
+    // This function will be run when the HTTP request completes. May be a long time
+    if (message.status_code !== 200) {
+      // Try again later
+      return;
+    }
+    // Request was OK
+    var weatherJSON = request.response_body.data;
+    //TODO: parse metar ourselves as geonames is too optimistic
+    var weather = JSON.parse(weatherJSON);
+    callback(weather);
+  });
+}
+
+function getIcon(weather){
+  //is there any interesting weather?
+  switch (weather.weatherObservation.weatherCondition){
+  case "drizzle":
+  case "light showers rain":
+  case "light rain":
+    return "weather-showers-scattered.svg";
+  case "rain":
+    return "weather-showers.svg";
+  case "snow": 
+  case "snow grains":
+    return "weather-snow.svg"; 
+  }
+  // If not, then we check for clouds
+  switch (weather.weatherObservation.clouds){
+    case "few clouds":
+    case "scattered clouds":
+      return "weather-few-clouds.svg";
+    case "clear sky":
+      return "weather-clear.svg"
+    case "broken clouds":
+    case "overcast":
+      return "weather-overcast.svg";
+  }
+  return "weather-fog.svg";
+}  
+  </code>
   <p>Running untill you have all the autotools files ready. :
 
   $ GJS_PATH=`pwd` gjs weather
