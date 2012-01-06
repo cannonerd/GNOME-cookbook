@@ -125,6 +125,7 @@ AC_OUTPUT]]></code>
     <p>COPYING:</p>
     <p>INSTALL:</p>
     <p>NEWS: A record of user-visible changes to a package.</p>
+    <!-- TODO: is this really so, check maybe one of the options used in configure.ac changes this behavior, like some option you pass (or not) to AM_INIT_AUTOMAKE -->
     <p>ChangeLog: Records of changes that are made to the package. Important. </p>
     <p>README: Information user should read first.</p>
     <p>When you have all the 3 files with correct information and rights run these commands in terminal:</p>
