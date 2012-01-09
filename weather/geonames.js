@@ -30,7 +30,7 @@ function getIcon(weather){
     return "weather-showers-scattered.svg";
   case "rain":
     return "weather-showers.svg";
-  case "snow": 
+  case "light snow": 
   case "snow grains":
     return "weather-snow.svg"; 
     // TODO: First switch for condition to see if there is "interesting" weather

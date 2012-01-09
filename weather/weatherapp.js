@@ -41,7 +41,7 @@ weatherwindow.show();
 
 //some weather
 //TODO: ask for ICAO code, link to the get button click.
-//var entry = new Gtk.Entry(); why does this blow everything up?
+var entry = new Gtk.Entry();// why does this blow everything up?
 var icao = "EFHF"; //"EFHF";
 GeoNames.getWeather(icao, function(weather) {
 //this here works bit like signals. This code will be run when we have weather.
