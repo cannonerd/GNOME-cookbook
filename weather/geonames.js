@@ -10,13 +10,14 @@ function getWeather(station, callback) {
     // This function will be run when the HTTP request completes. May be a long time
     if (message.status_code !== 200) {
       // Try again later
+      callback(message.status_code, null);
       return;
     }
     // Request was OK
     var weatherJSON = request.response_body.data;
     //TODO: parse metar ourselves as geonames is too optimistic
     var weather = JSON.parse(weatherJSON);
-    callback(weather);
+    callback(null, weather);
   });
 }
 

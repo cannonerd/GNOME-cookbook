@@ -101,10 +101,12 @@ Gtk.main();]]></code>
   <section id ="Asynhronous">
   <!-- TODO: re-word and re-write -->
   <p>
-    The reason why you should plan your application based on asynchronity is that with asyncronity your UI won't be blocked with any requests. Asynchronity makes your application more flexible and better equipped to handling situations when calls take more time than expected or for some reason get jammed. 
+  With many programming languages, all operations are run synchronously - you tell the program to do something, and it will wait until that action completes before proceeding. This is however bad for
+  graphical user interfaces, as then the whole application will be frozen while the program waits for
+  the operation. Going asynchronous (async) helps here. With async calls, your UI won't be blocked with any requests. Async calls make your application more flexible and better equipped to handle situations when calls take more time than expected or for some reason get jammed. Async calls can be used for example file system I/O and for slower calculations in the background. 
   </p>
   <p>
-    In this example we have to get data from geonames.org so while we do that we want the rest of our program to continue and not to wait. If we wouldn't get any information from geonames.org for the lack of internet connection and this would be a synhronous application we would never  get to the point where our main_quit() is processed correctly and you would have to kill your application from terminal.
+    In this example we have to get data from geonames.org so while we do that we want the rest of our program to continue. If we wouldn't get any information from geonames.org for the lack of internet connection and this would be a synhronous application we would never  get to the point where our main_quit() is processed correctly and you would have to kill your application from terminal.
   
   </p>
   </section>
