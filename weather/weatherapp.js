@@ -4,7 +4,7 @@
 
 var Gtk, weatherwindow, label1, label2, label3;
 
-const GeoNames = imports.geonames;
+const WeatherService = imports.geonames;
 //Bring your own library from same folder (as set in GJS_PATH). If using autotools .desktop will take care of this
 
 Gtk = imports.gi.Gtk;
@@ -42,8 +42,8 @@ weatherwindow.show();
 //some weather
 //TODO: ask for ICAO code, link to the get button click.
 var entry = new Gtk.Entry();// why does this blow everything up?
-var icao = "EFHF"; //"EFHF";
-GeoNames.getWeather(icao, function(error, weather) {
+var GeoNames = new WeatherService.GeoNames("EFHF"); //"EFHF";
+GeoNames.getWeather(function(error, weather) {
   //this here works bit like signals. This code will be run when we have weather.
   if (error) { 
   //TODO: show error somehow

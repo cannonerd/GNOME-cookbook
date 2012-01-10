@@ -1,10 +1,14 @@
 const Soup = imports.gi.Soup;
 
-function getWeather(station, callback) {
+function GeoNames(station) {
+  this.station = station;
+}
+
+GeoNames.prototype.getWeather = function(callback) {
   //some weather
   var session = new Soup.SessionAsync();
   //TODO: Change username to global username instead of personal
-  var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=' + station + '&username=ihmissuski');
+  var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=' + this.station + '&username=ihmissuski');
   //http://www.geonames.org/export/JSON-webservices.html
   session.queue_message(request, function(session, message) {
     // This function will be run when the HTTP request completes. May be a long time
@@ -21,7 +25,7 @@ function getWeather(station, callback) {
   });
 }
 
-function getIcon(weather){
+GeoNames.prototype.getIcon = function(weather){
   print (JSON.stringify(weather));
   switch (weather.weatherObservation.weatherCondition){
   //TODO: metar words list, try to work out the words, no one seems to know. Own metar parser on the way..
