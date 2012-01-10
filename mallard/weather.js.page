@@ -29,10 +29,12 @@
   </synopsis>
   
   <section id ="planningUi">
+  <title> Planning the UI</title>
   <p> Structuring an application means you will be using GTK+. The most important thing is to remember that the main window will only accept 1 widget, so you must plan your structure accordingly (this example is using Gtk.Boxes). When starting out with the structure it is useful to first draw to paper the main window and the first Gtk.Box (the one widget) it contains. Inside that box you can put multiple widgets (boxes, labels, entry's..). Vertical box arranges only horizontal boxes in the right order and vice versa. </p>
   </section>
   
   <section id ="weatherapp.js">
+  <title>Weatherapp.js</title>
   <p> Weatherapp.js file looks like this:</p>
   <code mime="text/javascript" style="numbered"><![CDATA[
 #!/usr/bin/gjs
@@ -100,7 +102,8 @@ GeoNames.getWeather(icao, function(weather) {
 Gtk.main();]]></code>
   </section>
 
-  <section id ="Asynhronous">
+  <section id ="Asynchronous">
+  <title>Asynchronous calls</title>
   <p> With many programming languages, all operations are run synchronously - you tell the program to do something, and it will wait until that action completes before proceeding. This is however bad for
   graphical user interfaces, as then the whole application will be frozen while the program waits for
   the operation. Going asynchronous (async) helps here. With async calls, your UI won't be blocked with any requests. Async calls make your application more flexible and better equipped to handle situations when calls take more time than expected or for some reason get jammed. Async calls can be used for example file system I/O and for slower calculations in the background.   </p>
@@ -108,6 +111,8 @@ Gtk.main();]]></code>
   </section>
   
   <section id ="geonames.js">
+  <title>geonames.js</title>
+  <p>The following code are the functions that are called asynchronously from weatherapp.js</p>
   <code mime="text/javascript" style="numbered"><![CDATA[
 const Soup = imports.gi.Soup;
 
