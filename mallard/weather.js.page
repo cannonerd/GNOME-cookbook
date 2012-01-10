@@ -164,7 +164,7 @@ function getIcon(weather){
 }  ]]></code>
   <p>Running untill you have all the autotools files ready. :</p>
 
-  <screen> <output style="prompt">$ </output><input> GJS_PATH=`pwd` gjs weather</input></screen><p>
+  <screen> <output style="prompt">$ </output><input> GJS_PATH=`pwd` gjs weatherapp.js</input></screen><p>
 
   use this command on terminal while developing your modules. When calling your program in this manner it knows where to find your custom JSlibraries, in this case geonames.js.
   </p>
