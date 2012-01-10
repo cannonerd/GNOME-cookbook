@@ -30,7 +30,7 @@
   
   <section id ="planningUi">
   <title> Planning the UI</title>
-  <p> Structuring an application means you will be using GTK+. The most important thing is to remember that the main window will only accept 1 widget, so you must plan your structure accordingly (this example is using Gtk.Boxes). When starting out with the structure it is useful to first draw to paper the main window and the first Gtk.Box (the one widget) it contains. Inside that box you can put multiple widgets (boxes, labels, entry's..). Vertical box arranges only horizontal boxes in the right order and vice versa. </p>
+  <p> Structuring an application means you will be using GTK+. The most important thing is to remember that the main window will only accept 1 widget, so you must plan your structure accordingly (this example is using Gtk.Boxes). When starting out with the structure it is useful to first draw to paper the main window and the first Gtk.Box (the one widget) it contains. Inside that box you can put multiple widgets (boxes, labels, entry's..). Vertical box arranges only horizontal boxes in the right order and vice versa. For more information visit <link href="http://developer.gnome.org/gtk3/stable/gtkobjects.html"> the GTK+ widgets and objects page</link>.</p>
   </section>
   
   <section id ="weatherapp.js">
