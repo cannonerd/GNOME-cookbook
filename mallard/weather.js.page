@@ -4,7 +4,7 @@
 
   <info>    
     <link type="guide" xref="index#js"/>    
-    <desc> How to get information over the internet asynchronously so that your application will not halt if you have a sudden loss on connection to the internet. Asynchronous models will be presented through a weather showing application.
+    <desc> How to plan an application that uses asynchronous calls. Asynchronous calls will be presented through a weather application.
     </desc>    
     <revision pkgversion="0.1" version="0.1" date="2012-01-04" status="review"/>
     <credit type="author">
@@ -15,7 +15,7 @@
 
   <title>Weather application with asynchronous calls</title>  
   <synopsis>
-    <p>In this guide well construct a weather application using asynchronous calls. The weather information in this example is fetched from geonames.org and is using the ICAO codes to place your weather request. In this guide we weill go through the following parts:</p>
+    <p>In this guide well construct a weather application using asynchronous calls. Weather information in this example is fetched from geonames.org and the application is using the ICAO codes to place your weather request. In this guide we we'll go through the following parts:</p>
       
     <list>
       <item><p> planning ui</p></item>
@@ -25,13 +25,15 @@
       <item><p> Autotools</p></item>
     </list> 
       
-    <p>To do and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
+    <p>To write and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
   </synopsis>
+  
   <section id ="planningUi">
-  <p> Main window will only accept 1 widget, plan your structure accordingly(using Gtk.Box)</p>
+  <p> Structuring an application means you will be using GTK+. The most important thing is to remember that the main window will only accept 1 widget, so you must plan your structure accordingly (this example is using Gtk.Boxes). When starting out with the structure it is useful to first draw to paper the main window and the first Gtk.Box (the one widget) it contains. Inside that box you can put multiple widgets (boxes, labels, entry's..). Vertical box arranges only horizontal boxes in the right order and vice versa. </p>
   </section>
+  
   <section id ="weatherapp.js">
-  <p> Weatherapp.js file looks like this</p>
+  <p> Weatherapp.js file looks like this:</p>
   <code mime="text/javascript" style="numbered"><![CDATA[
 #!/usr/bin/gjs
 //The previous line is a hash bang tells how to run the script.
@@ -99,17 +101,12 @@ Gtk.main();]]></code>
   </section>
 
   <section id ="Asynhronous">
-  <!-- TODO: re-word and re-write -->
-  <p>
-  With many programming languages, all operations are run synchronously - you tell the program to do something, and it will wait until that action completes before proceeding. This is however bad for
+  <p> With many programming languages, all operations are run synchronously - you tell the program to do something, and it will wait until that action completes before proceeding. This is however bad for
   graphical user interfaces, as then the whole application will be frozen while the program waits for
-  the operation. Going asynchronous (async) helps here. With async calls, your UI won't be blocked with any requests. Async calls make your application more flexible and better equipped to handle situations when calls take more time than expected or for some reason get jammed. Async calls can be used for example file system I/O and for slower calculations in the background. 
-  </p>
-  <p>
-    In this example we have to get data from geonames.org so while we do that we want the rest of our program to continue. If we wouldn't get any information from geonames.org for the lack of internet connection and this would be a synhronous application we would never  get to the point where our main_quit() is processed correctly and you would have to kill your application from terminal.
-  
-  </p>
+  the operation. Going asynchronous (async) helps here. With async calls, your UI won't be blocked with any requests. Async calls make your application more flexible and better equipped to handle situations when calls take more time than expected or for some reason get jammed. Async calls can be used for example file system I/O and for slower calculations in the background.   </p>
+  <p>    In this example we have to get data from geonames.org so while we do that we want the rest of our program to continue. If we wouldn't get any information from geonames.org for the lack of internet connection and this would be a synhronous application we would never  get to the point where our main_quit() is processed correctly and you would have to kill your application from terminal.  </p>
   </section>
+  
   <section id ="geonames.js">
   <code mime="text/javascript" style="numbered"><![CDATA[
 const Soup = imports.gi.Soup;
@@ -160,9 +157,9 @@ function getIcon(weather){
   }
   return "weather-fog.svg";
 }  ]]></code>
-  <p>Running untill you have all the autotools files ready. :
+  <p>Running untill you have all the autotools files ready. :</p>
 
-  $ GJS_PATH=`pwd` gjs weather
+  <screen> <output style="prompt">$ </output><input> GJS_PATH=`pwd` gjs weather</input></screen><p>
 
   use this command on terminal while developing your modules. When calling your program in this manner it knows where to find your custom JSlibraries, in this case geonames.js.
   </p>
