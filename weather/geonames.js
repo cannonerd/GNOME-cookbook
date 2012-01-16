@@ -1,4 +1,6 @@
 const Soup = imports.gi.Soup;
+  const _httpSession = new Soup.SessionAsync();
+  Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefault());
 
 function GeoNames(station) {
   this.station = station;
@@ -6,11 +8,11 @@ function GeoNames(station) {
 
 GeoNames.prototype.getWeather = function(callback) {
   //some weather
-  var session = new Soup.SessionAsync();
+  //var session = new Soup.SessionAsync();
+
   //TODO: Change username to global username instead of personal
   var request = Soup.Message.new('GET', 'http://api.geonames.org/weatherIcaoJSON?ICAO=' + this.station + '&username=ihmissuski');
-  //http://www.geonames.org/export/JSON-webservices.html
-  session.queue_message(request, function(session, message) {
+  _httpSession.queue_message(request, function(_httpSession, message) {
     // This function will be run when the HTTP request completes. May be a long time
     if (message.status_code !== 200) {
       // Try again later
