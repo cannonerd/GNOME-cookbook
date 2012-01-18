@@ -28,3 +28,7 @@ weatherapp.sh: weatherapp.sh.in
 	
 CLEANFILES += weatherapp.sh
 EXTRA_DIST += weatherapp.sh.in
+
+#the applicaion icon
+appicondir=$(datadir)/icons/hicolor/scalable/apps
+appicon_DATA=weather-icon.svg
