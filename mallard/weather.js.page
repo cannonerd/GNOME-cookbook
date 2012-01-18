@@ -174,8 +174,78 @@ GeoNames.prototype = {
 
   <section id ="autotools">
   <title>Autotools and necessary files</title>
-  <p>Having more than one file in your folder makes using autotools a bit tricky. You need the .desktop file, autogen.sh, Makefile.am, configure.ac and as a new file: myapp.sh.in file.
-</p>
+  <p>Having more than one file in your folder makes using autotools a bit tricky. You need the .desktop file, autogen.sh, Makefile.am, configure.ac and as a new file: myapp.sh.in file. 
+  </p> 
+  <p>For this you need to have the following files:</p>
+    <list>
+      <item><p>weatherapp.desktop</p></item>
+      <item><p>weatherapp.sh.in</p></item>
+      <item><p>Makefile.am</p></item>
+      <item><p>configure.ac</p></item>
+      <item><p>autogen.sh</p></item>          
+    </list>
+    <p>weatherapp.desktop</p>
+    <code mime="text/.desktop" style="numbered"><![CDATA[
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Weather app
+Comment=Weather showing application
+Exec=weatherapp.sh
+Icon=application-default-icon
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Utility;]]></code>
+    <p>weatherapp.sh.in</p>
+    <code mime="text/sh.in" style="numbered"><![CDATA[
+#!/bin/sh
+export GJS_PATH=@bindir@
+gjs @bindir@/weatherapp.js]]></code>
+    <p>Makefile.am</p>
+    <code mime="text/am" style="numbered"><![CDATA[
+# The actual runnable program is set to the SCRIPTS primitive. Prefix bin_ tells where to copy this
+bin_SCRIPTS = weatherapp.js geonames.js weatherapp.sh
+# List of files to be distributed
+EXTRA_DIST=  \
+    $(bin_SCRIPTS)
+CLEANFILES =
+
+# The desktop files    
+desktopdir = $(datadir)/applications
+desktop_DATA =weatherapp.desktop
+
+# convenience command for doing Makefile variable substitutions in non-Makefile
+# files (scripts, service files, etc.)
+do_subst = sed -e 's|@abs_top_srcdir[@]|$(abs_top_srcdir)|g' \
+               -e 's|@abs_top_builddir[@]|$(abs_top_builddir)|g' \
+               -e 's|@localedir[@]|$(localedir)|g' \
+               -e 's|@bindir[@]|$(bindir)|g' \
+               -e 's|@libexecdir[@]|$(libexecdir)|g' \
+	       -e 's|@pkglibdir[@]|$(pkglibdir)|g' \
+	       -e 's|@pkgdatadir[@]|$(pkgdatadir)|g' \
+	       -e 's|@have_libnotify[@]|$(HAVE_LIBNOTIFY)|g' \
+	       -e 's|@have_libsoup[@]|$(HAVE_LIBSOUP)|g' \
+	       -e 's|@have_cheese[@]|$(HAVE_CHEESE)|g'
+
+weatherapp.sh: weatherapp.sh.in
+	$(AM_V_GEN) $(do_subst) $< > $@
+	chmod +x $@
+	
+CLEANFILES += weatherapp.sh
+EXTRA_DIST += weatherapp.sh.in]]></code>
+    <p>configure.ac</p>
+    <code mime="text/ac" style="numbered"><![CDATA[
+dnl This file is processed by autoconf to create a configure script
+AC_INIT([Weather App], 1.0)
+AM_INIT_AUTOMAKE([1.10 no-define foreign])
+AC_CONFIG_FILES(Makefile)
+AC_OUTPUT]]></code>
+    <p>autohen.sh</p>
+    <code mime="text/sh" style="numbered"><![CDATA[
+#!/bin/sh
+# This will run autoconf, automake, etc. for us
+autoreconf --force --install]]></code>
   </section>
 </page>
 
