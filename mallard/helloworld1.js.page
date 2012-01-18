@@ -55,7 +55,7 @@ Gtk.main();]]></code>
   </section>
   <section id=".desktop">
     <title>HelloWorld.desktop</title>
-    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working <link href= "http://library.gnome.org/admin/system-admin-guide/stable/mimetypes-9.html.en">application integration </link>in GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://library.gnome.org/admin/system-admin-guide/stable/menustructure-desktopentry.html.en"> here </link>. </p>
+    <p>Running applications from terminal is useful at the beginning of the application making process. To have a fully working <link href= "http://library.gnome.org/admin/system-admin-guide/stable/mimetypes-9.html.en">application integration </link>in GNOME 3. requires a desktop launcher. For this you need to create a  <code>.desktop</code> file. The .desktop file describes the application name, used icon and various integration bits. A deeper insight to  <code>.desktop</code> file can be found <link href= "http://developer.gnome.org/desktop-entry-spec/"> here </link>. </p>
   <p>The example shows you the minimum requirements for a  <code>.desktop</code> file. </p>
   <code mime="text/desktop" style="numbered"><![CDATA[
 [Desktop Entry]
@@ -78,7 +78,8 @@ Categories=GNOME;GTK;Utility;]]></code>
   </list>
   <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
   <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec</link>.</p>
-  <p>In this example I used an existing icon. For a custom icon you must store the icon in various folders in $ dir /usr/share/ . It is recommended that you supply at least 16x16 and 48x48 icons for your application. More information on icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link> and <link href="https://live.gnome.org/GnomeGoals/AppIcon">here</link>. I will talk more about icons in the autotools section.</p>
+  <p>In this example I used an existing icon. For a custom icon you must store the icon in various folders in $ dir /usr/share/ . It is recommended that you supply at least 16x16 and 48x48 icons for your application. More information on icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link> and <link href="https://live.gnome.org/GnomeGoals/AppIcon">here</link> and <link href="http://freedesktop.org/wiki/Specifications/icon-theme-spec"> here</link>. I will talk more about icons in the autotools section.</p>
+  <p>After finishing with the .desktop file you must change it's permissions to allow executing file as program. So right click the .desktop file, choose properties and tab permissions and place a check on the box after Execute:</p>
   </section>
   
   <section id="autotools">
