@@ -3,7 +3,7 @@ Version=1.0
 Encoding=UTF-8
 Name=Weather App
 Comment=Displays weather
-Exec=GJS_PATH=`pwd` gjs weatherapp.js
+Exec=weatherapp.js
 Icon=application-default-icon
 Terminal=false
 Type=Application
