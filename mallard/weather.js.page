@@ -197,11 +197,15 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GNOME;GTK;Utility;]]></code>
+    <p>The thing to notice in this file is that the Exec line will make this .desktop file work only after running all the makefiles.</p>
+
     <p>weatherapp.sh.in</p>
     <code mime="text/sh.in" style="numbered"><![CDATA[
 #!/bin/sh
 export GJS_PATH=@bindir@
 gjs @bindir@/weatherapp.js]]></code>
+    <p>This file is a template to the file Makefile will do to be run from .desktop.</p>
+
     <p>Makefile.am</p>
     <code mime="text/am" style="numbered"><![CDATA[
 # The actual runnable program is set to the SCRIPTS primitive. Prefix bin_ tells where to copy this
@@ -234,6 +238,8 @@ weatherapp.sh: weatherapp.sh.in
 	
 CLEANFILES += weatherapp.sh
 EXTRA_DIST += weatherapp.sh.in]]></code>
+    <p>This needs a bit more explaining. Compared to the HelloWorld Makefile.am this has changed quite a bit. Lets go through all the new blocks:</p>
+
     <p>configure.ac</p>
     <code mime="text/ac" style="numbered"><![CDATA[
 dnl This file is processed by autoconf to create a configure script
