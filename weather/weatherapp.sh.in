@@ -1,0 +1,3 @@
+#!/bin/sh
+export GJS_PATH=@bindir@
+gjs @bindir@/weatherapp.js

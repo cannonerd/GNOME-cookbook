@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
-Name=Weather App
-Comment=Displays weather
-Exec=weatherapp.js
+Name=Weather app
+Comment=Weather showing application
+Exec=weatherapp.sh
 Icon=application-default-icon
 Terminal=false
 Type=Application
