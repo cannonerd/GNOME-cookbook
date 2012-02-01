@@ -31,7 +31,8 @@ var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spaci
 weather_box.add(icao_box);
 weather_box.add(labelicon_box);
 var entry = new Gtk.Entry();
-entry.set_width_chars(5);
+entry.set_width_chars(4);
+entry.set_max_length(4);
 var label4 = new Gtk.Label({label: "Enter ICAO station for weather: "});
 var button1 = new Gtk.Button({label: "search!"});
 icao_box.add(label4, false, false, 0);
@@ -63,7 +64,7 @@ var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
 GeoNames.getWeather(function(error, weather) {
   //this here works bit like signals. This code will be run when we have weather.
   if (error) { 
-  //TODO: show error somehow
+    label2.set_text("Suggested ICAO station does not exist Try EFHF");
   return; }
   weatherIcon.file = GeoNames.getIcon(weather);
   

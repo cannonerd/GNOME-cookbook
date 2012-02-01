@@ -17,6 +17,11 @@ GeoNames.prototype = {
       }
       var weatherJSON = request.response_body.data;
       var weather = JSON.parse(weatherJSON);
+      if (!weather.weatherObservation) {
+        print(weatherJSON);
+        callback("FAIL", null);
+        return;
+      }
       callback(null, weather);
       });
     }, 
