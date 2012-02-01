@@ -56,30 +56,42 @@ weatherwindow.show();
 
 //some weather
 
-button1.connect("clicked", function(){
-var station = entry.get_text();
-
-var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
-
-GeoNames.getWeather(function(error, weather) {
-  //this here works bit like signals. This code will be run when we have weather.
-  if (error) { 
-    label2.set_text("Suggested ICAO station does not exist Try EFHF");
-  return; }
-  weatherIcon.file = GeoNames.getIcon(weather);
-  
-  label1.set_text("Temperature is " + weather.weatherObservation.temperature + " degrees.");
-  if (weather.weatherObservation.weatherCondition !== "n/a"){
-    label2.set_text("Looks like there is " + weather.weatherObservation.weatherCondition + " in the sky.");
-    }
-  else {
-    label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");
+entry.connect("key_press_event", function(widget, event) {
+  // FIXME: Get weather on enter (key 13)
+  if (entry.get_text().length === 4) {
+    // Enough is enough
+    getWeatherForStation();
   }
-  label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
-  // ...
+  return false;
 });
 
+button1.connect("clicked", function(){
+  getWeatherForStation();
 });
+
+function getWeatherForStation() {
+  var station = entry.get_text();
+
+  var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
+
+  GeoNames.getWeather(function(error, weather) {
+    //this here works bit like signals. This code will be run when we have weather.
+    if (error) { 
+      label2.set_text("Suggested ICAO station does not exist Try EFHF");
+    return; }
+    weatherIcon.file = GeoNames.getIcon(weather);
+    
+    label1.set_text("Temperature is " + weather.weatherObservation.temperature + " degrees.");
+    if (weather.weatherObservation.weatherCondition !== "n/a"){
+      label2.set_text("Looks like there is " + weather.weatherObservation.weatherCondition + " in the sky.");
+      }
+    else {
+      label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");
+    }
+    label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
+    // ...
+  });
+}
 
 //and run it
 Gtk.main();
