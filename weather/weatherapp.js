@@ -23,26 +23,43 @@ label1 = new Gtk.Label({label: ""});
 label2 = new Gtk.Label({label: "Looking in the sky..."});   
 label3 = new Gtk.Label({label: ""});
 //TODO: rethink the boxes
-var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 weatherwindow.add(weather_box);
+
+var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+weather_box.add(icao_box);
+weather_box.add(labelicon_box);
+var entry = new Gtk.Entry();
+var label4 = new Gtk.Label({label: "Enter ICAO station for weather "});
+var button1 = new Gtk.Button({label: "search!"});
+icao_box.add(label4, false, false, 0);
+icao_box.add(entry, false, false, 0);
+icao_box.add(button1, false, false, 0);
 var weather_label = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 var weather_icon = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
-weather_box.pack_start(weather_label, false, false, 0);
-weather_box.pack_start(weather_icon, true, true, 0);
+labelicon_box.pack_start(weather_label, false, false, 0);
+labelicon_box.pack_start(weather_icon, true, true, 0);
 weather_label.add(label1, false, false, 0);
 weather_label.add(label2, false, false, 0);
 weather_label.add(label3, false, false, 0);
 weather_icon.add(weatherIcon, true, true, 0);
 //show everything you have done
+icao_box.show_all();
+labelicon_box.show_all();
 weather_box.show_all();
 weather_label.show_all();
 weather_icon.show_all();
 weatherwindow.show();
 
 //some weather
-//TODO: ask for ICAO code, link to the get button click.
-var entry = new Gtk.Entry();// why does this blow everything up?
-var GeoNames = new WeatherService.GeoNames("EFHF"); //"EFHF";
+
+var station;
+button1.connect("clicked", function(){
+station = entry.get_text();
+
+var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
+
 GeoNames.getWeather(function(error, weather) {
   //this here works bit like signals. This code will be run when we have weather.
   if (error) { 
@@ -59,6 +76,8 @@ GeoNames.getWeather(function(error, weather) {
   }
   label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
   // ...
+});
+
 });
 
 //and run it
