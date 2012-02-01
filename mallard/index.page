@@ -1,11 +1,22 @@
 <page xmlns="http://projectmallard.org/1.0/"
       type="topic"
       id="index">
-
-    <info>    
-        <link type="guide" xref="helloworld.js" />
-        <link type="guide" xref="helloworld1.js" />
-        <link type="guide" xref="weatherapp.js" />
-    </info>
+  <section>
     <title>GNOME JS CookBook</title>
+      <synopsis>
+        <p>With this cookbook you will be able to construct JavaScript programs for GNOME 3. The hello World and Weatherapp with asynchronous calls are there to be as a guide how a complete program is constructed and after that some of the different ingredients are displayed. So choose your ingredients and start cooking!</p>
+    </synopsis>
+  </section>
+  <section>
+    <info>    
+      <link type="guide" xref="helloworld.js" />
+      <link type="guide" xref="helloworld1.js" />
+       <link type="guide" xref="weatherapp.js" />
+    </info>
+  </section>
+  <section>
+    <info>
+      <link type="guide" xref="toolbar.js" />
+    </info>
+  </section>
 </page>
