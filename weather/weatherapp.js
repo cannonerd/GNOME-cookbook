@@ -55,12 +55,10 @@ weatherwindow.show();
 
 //some weather
 
-var station;
-var GeoNames;
 button1.connect("clicked", function(){
-station = entry.get_text();
+var station = entry.get_text();
 
-GeoNames = new WeatherService.GeoNames(station); //"EFHF";
+var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
 
 GeoNames.getWeather(function(error, weather) {
   //this here works bit like signals. This code will be run when we have weather.
