@@ -10,6 +10,10 @@
     <credit type="author">
       <name>Susanna Huhtanen</name>
       <email>ihmis.suski@gmail.com</email>
+    </credit>   
+    <credit type="author">
+      <name>Cosimo</name>
+      <email>@</email>
     </credit>    
   </info>
 
@@ -78,7 +82,7 @@ Categories=GNOME;GTK;Utility;]]></code>
   </list>
   <p>If you want your  <code>.desktop</code> file to exist as a part of the system, copy your  <code>.desktop</code> file to here ~/.local/share/applications</p>
   <p> To put your application to the right category go see:<link href = "http://standards.freedesktop.org/menu-spec/latest/apa.html"> menu spec</link>.</p>
-  <p>In this example I used an existing icon. For a custom icon you must store the icon in various folders in $ dir /usr/share/ . It is recommended that you supply at least 16x16 and 48x48 icons for your application. More information on icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link> and <link href="https://live.gnome.org/GnomeGoals/AppIcon">here</link> and <link href="http://freedesktop.org/wiki/Specifications/icon-theme-spec"> here</link>. I will talk more about icons in the autotools section.</p>
+  <p>In this example I used an existing icon. For a custom icon check the weather app guide. More information on icons in <link href="http://library.gnome.org/admin/system-admin-guide/stable/themes-11.html.en"> here </link> and <link href="https://live.gnome.org/GnomeGoals/AppIcon">here</link> and <link href="http://freedesktop.org/wiki/Specifications/icon-theme-spec"> here</link>.</p>
   <p>After finishing with the .desktop file you must change it's permissions to allow executing file as program. So right click the .desktop file, choose properties and tab permissions and place a check on the box after Execute:</p>
   </section>
   

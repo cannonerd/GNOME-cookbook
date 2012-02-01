@@ -2,7 +2,10 @@
 bin_SCRIPTS = weatherapp.js geonames.js weatherapp.sh
 # List of files to be distributed
 EXTRA_DIST=  \
-    $(bin_SCRIPTS)
+    $(bin_SCRIPTS) \
+    $(private_icons)	\
+	  $(NULL)
+
 CLEANFILES =
 
 # The desktop files    
@@ -29,6 +32,28 @@ weatherapp.sh: weatherapp.sh.in
 CLEANFILES += weatherapp.sh
 EXTRA_DIST += weatherapp.sh.in
 
-#the applicaion icon
+#the application icon
 appicondir=$(datadir)/icons/hicolor/scalable/apps
 appicon_DATA=weather-icon.svg
+
+#icons in the application
+NULL =
+
+private_icons = \
+	weather-clear.svg \
+  weather-few-clouds.svg \
+  weather-fog.svg \
+  weather-icon.svg \
+  weather-overcast.svg \
+  weather-showers.svg \
+  weather-showers-scattered.svg \
+  weather-snow.svg \
+  $(NULL)
+  
+install-icons:
+	for icon in $(private_icons); do \
+		mkdir -p $(DESTDIR)$(pkgdatadir)/icons/; \
+		$(INSTALL_DATA) $(srcdir)/$$icon $(DESTDIR)$(pkgdatadir)/icons/; \
+	done
+	
+install-data-local: install-icons

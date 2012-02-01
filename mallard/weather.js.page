@@ -253,5 +253,11 @@ AC_OUTPUT]]></code>
 # This will run autoconf, automake, etc. for us
 autoreconf --force --install]]></code>
   </section>
+    <section>
+  <p>When thinking about custom icons a good rule of thumb is: do you expect to see that icon used elsewhere or is it private to your app? If the first (e.g. the icons in the desktop file that are shown by the shell) then you need /usr/share/hicolor, otherwise (e.g. the weather icons of your app) /usr/share/$application/bla/bla</p>
+  <p>Using autotools you have to make some changes to your .desktop and Makefile.am files. In the desktop file you change the Icon's name  Icon=weather-icon. In the Makefile.am file you add these two lines to the end of your application #the application icon
+appicondir=$(datadir)/icons/hicolor/scalable/apps
+appicon_DATA=weather-icon.svg </p>
+  </section>
 </page>
 

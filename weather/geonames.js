@@ -38,9 +38,10 @@ GeoNames.prototype = {
     switch (weather.weatherObservation.clouds){
       case "few clouds":
       case "scattered clouds":
-        return "weather-few-clouds.svg";
+        return "weather-few-clouds.svg" ;
       case "clear sky":
-        return "weather-clear.svg"
+      case "n/a":
+        return "weather-clear.svg";
       case "broken clouds":
       case "overcast":
         return "weather-overcast.svg";
