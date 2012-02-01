@@ -31,7 +31,8 @@ var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spaci
 weather_box.add(icao_box);
 weather_box.add(labelicon_box);
 var entry = new Gtk.Entry();
-var label4 = new Gtk.Label({label: "Enter ICAO station for weather "});
+entry.set_width_chars(5);
+var label4 = new Gtk.Label({label: "Enter ICAO station for weather: "});
 var button1 = new Gtk.Button({label: "search!"});
 icao_box.add(label4, false, false, 0);
 icao_box.add(entry, false, false, 0);
@@ -55,10 +56,11 @@ weatherwindow.show();
 //some weather
 
 var station;
+var GeoNames;
 button1.connect("clicked", function(){
 station = entry.get_text();
 
-var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
+GeoNames = new WeatherService.GeoNames(station); //"EFHF";
 
 GeoNames.getWeather(function(error, weather) {
   //this here works bit like signals. This code will be run when we have weather.
