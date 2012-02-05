@@ -18,13 +18,25 @@ weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //We initialize the icon here, but deside the file later in geonames.js.
 var weatherIcon = new Gtk.Image();
 
+var toolweather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+weatherwindow.add(toolweather_box);
+
 //Set some labels to your window
 label1 = new Gtk.Label({label: ""});
 label2 = new Gtk.Label({label: "Looking in the sky..."});   
 label3 = new Gtk.Label({label: ""});
-//TODO: rethink the boxes
+
+var tool_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+toolweather_box.add(tool_box);
+
 var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
-weatherwindow.add(weather_box);
+toolweather_box.add(weather_box);
+//toolbar-stuff
+var toolbar = new Gtk.Toolbar();
+toolbar.set_style(Gtk.ToolbarStyle.ICONS);
+var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
+toolbar.insert(buttonQuit, 0)
+tool_box.add(toolbar);
 
 var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
 var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
@@ -38,6 +50,7 @@ var button1 = new Gtk.Button({label: "search!"});
 icao_box.add(label4, false, false, 0);
 icao_box.add(entry, false, false, 0);
 icao_box.add(button1, false, false, 0);
+
 var weather_label = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 var weather_icon = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 labelicon_box.pack_start(weather_label, false, false, 0);
@@ -46,7 +59,9 @@ weather_label.add(label1, false, false, 0);
 weather_label.add(label2, false, false, 0);
 weather_label.add(label3, false, false, 0);
 weather_icon.add(weatherIcon, true, true, 0);
+
 //show everything you have done
+toolweather_box.show_all();
 icao_box.show_all();
 labelicon_box.show_all();
 weather_box.show_all();
