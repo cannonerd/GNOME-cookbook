@@ -1,0 +1,28 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    type="topic"
+    id="applicationmenu.js">
+
+  <info>    
+    <link type="guide" xref="index#js"/>    
+    <desc> Application menu
+    </desc>    
+    <revision pkgversion="0.1" version="0.1" date="2012-02-01" status="review"/>
+    <credit type="author">
+      <name>Susanna Huhtanen</name>
+      <email>ihmis.suski@gmail.com</email>
+    </credit>    
+  </info>
+
+  <title>Application menu</title>  
+  <synopsis>
+    <p>
+    How to make a application menu and how it works. In this section we will go thorought the following parts
+    </p>
+    <list>
+      <item><p> code for application menu</p></item>
+      <item><p> </p></item>
+      <item><p>  </p></item>
+    </list> 
+  </synopsis>
+  </page>
+

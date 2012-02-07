@@ -17,6 +17,7 @@
   <section>
     <info>
       <link type="guide" xref="toolbar.js" />
+      <link type="guide" xref="applicationmenu.js" />
     </info>
   </section>
 </page>

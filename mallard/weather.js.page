@@ -18,11 +18,11 @@
     <p>In this guide well construct a weather application using asynchronous calls. Weather information in this example is fetched from geonames.org and the application is using the ICAO codes to place your weather request. In this guide we we'll go through the following parts:</p>
       
     <list>
-      <item><p> planning ui</p></item>
-      <item><p> weatherapp.js</p></item>
-      <item><p> geonames.js </p></item>
-      <item><p> Asynchronous calls</p></item>
-      <item><p> Autotools</p></item>
+      <item><p> <link xref="#planningUi">planning ui</link></p></item>
+      <item><p> <link xref="#weatherapp.js">weatherapp.js</link></p></item>
+      <item><p> <link xref="#geonames.js">geonames.js </link></p></item>
+      <item><p> <link xref="#asynchronous">Asynchronous calls</link></p></item>
+      <item><p><link xref="#autotools"> Autotools</link></p></item>
     </list> 
       
     <p>To write and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>

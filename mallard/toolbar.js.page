@@ -10,34 +10,161 @@
     <credit type="author">
       <name>Susanna Huhtanen</name>
       <email>ihmis.suski@gmail.com</email>
-    </credit>    
+    </credit>  
+    
+    <credit type="author">
+      <name>Cosimo</name>
+      <email>@</email>
+    </credit>     
   </info>
 
   <title>Toolbar</title>  
   <synopsis>
     <p>
-    How to make a toolbar and how it works. In this section we will go thorought the following parts
+    How to make a toolbar and how it works. With toolbars you create buttons, pack them into the toolbar container, and listen for signals when those buttons are activated. In this section we will go thorought the following parts
     </p>
     <list>
       <item><p> code for toolbar</p></item>
-      <item><p> custom widgets for a toolbar</p></item>
-      <item><p>  </p></item>
+      <item><p> connecting to a signal</p></item>
+      <item><p> custom widgets for a toolbar </p></item>
     </list> 
   </synopsis>
   <section id="code for toolbar">
   <title>Code for toolbar</title>
   <p>The code itself is quite simple. You just create a toolbar instance and insert the needed objects inside the toolbar. </p>
-<code mime="text/javascript" style="numbered"><![CDATA[
+  <code mime="text/javascript" style="numbered"><![CDATA[
+  var toolbar = new Gtk.Toolbar();
+  toolbar.set_style(Gtk.ToolbarStyle.ICONS);
+  var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
+  toolbar.insert(buttonQuit, 0)
+
+  //remember to add and show your toolbar in the correct box.
+
+  your_box.add(toolbar);
+  your_box.show_all();]]></code>
+  <p>As you see, the code itself it's quite simple. Showing just a button in this case doesn't do the trick, the buttom must be connected to a signal. In this case the buttonQuit should be connected to Gtk.main_quit()</p>
+  </section>
+  <section id="signal">
+  <title>Connecting to a signal</title>
+  <p></p>
+  </section>
+  <section id="weatherapp.js">
+  <title>The weatherapp program with toolbar included.</title>
+  <p>The weatherapp.js file looks like this with the toolar included</p>
+  <code mime="text/javascript" style="numbered"><![CDATA[
+  #!/usr/bin/gjs
+//The previous line is a hash bang tells how to run the script.
+// Note that the script has to be executable (run in terminal in the right folder: chmod +x scriptname)
+
+var Gtk, weatherwindow, label1, label2, label3;
+
+const WeatherService = imports.geonames;
+//Bring your own library from same folder (as set in GJS_PATH). If using autotools .desktop will take care of this
+
+Gtk = imports.gi.Gtk;
+// Initialize the gtk
+Gtk.init(null, 0);
+//create your window, name it and connect the x to quit function. Remember that window is a taken word
+weatherwindow = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
+weatherwindow.title = "Todays weather";
+//Window only accepts one widget and a title. Further structure with Gtk.boxes of similar
+weatherwindow.connect("destroy", function(){Gtk.main_quit()});
+//We initialize the icon here, but deside the file later in geonames.js.
+var weatherIcon = new Gtk.Image();
+
+var toolweather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+weatherwindow.add(toolweather_box);
+
+//Set some labels to your window
+label1 = new Gtk.Label({label: ""});
+label2 = new Gtk.Label({label: "Looking in the sky..."});   
+label3 = new Gtk.Label({label: ""});
+
+var tool_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+toolweather_box.add(tool_box);
+
+var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+toolweather_box.add(weather_box);
+//toolbar-stuff
 var toolbar = new Gtk.Toolbar();
 toolbar.set_style(Gtk.ToolbarStyle.ICONS);
 var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
 toolbar.insert(buttonQuit, 0)
+tool_box.add(toolbar);
 
-//remember to add and show your toolbar in the correct box.
+var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+weather_box.add(icao_box);
+weather_box.add(labelicon_box);
+var entry = new Gtk.Entry();
+entry.set_width_chars(4);
+entry.set_max_length(4);
+var label4 = new Gtk.Label({label: "Enter ICAO station for weather: "});
+var button1 = new Gtk.Button({label: "search!"});
+icao_box.add(label4, false, false, 0);
+icao_box.add(entry, false, false, 0);
+icao_box.add(button1, false, false, 0);
 
-your_box.add(toolbar);
-your_box.show_all();]]></code>
-<p>As you see, the code itself it's quite simple. Showing just a button in this case doesn't do the trick, the buttom must be connected to a signal. In this case the buttonQuit should be connected to Gtk.main_quit()</p>
+var weather_label = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+var weather_icon = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
+labelicon_box.pack_start(weather_label, false, false, 0);
+labelicon_box.pack_start(weather_icon, true, true, 0);
+weather_label.add(label1, false, false, 0);
+weather_label.add(label2, false, false, 0);
+weather_label.add(label3, false, false, 0);
+weather_icon.add(weatherIcon, true, true, 0);
+
+//show everything you have done
+toolweather_box.show_all();
+icao_box.show_all();
+labelicon_box.show_all();
+weather_box.show_all();
+weather_label.show_all();
+weather_icon.show_all();
+weatherwindow.show();
+
+//some weather
+
+entry.connect("key_press_event", function(widget, event) {
+  // FIXME: Get weather on enter (key 13)
+  if (entry.get_text().length === 4) {
+    // Enough is enough
+    getWeatherForStation();
+  }
+  return false;
+});
+
+button1.connect("clicked", function(){
+  getWeatherForStation();
+});
+
+function getWeatherForStation() {
+  var station = entry.get_text();
+
+  var GeoNames = new WeatherService.GeoNames(station); //"EFHF";
+
+  GeoNames.getWeather(function(error, weather) {
+    //this here works bit like signals. This code will be run when we have weather.
+    if (error) { 
+      label2.set_text("Suggested ICAO station does not exist Try EFHF");
+    return; }
+    weatherIcon.file = GeoNames.getIcon(weather);
+    
+    label1.set_text("Temperature is " + weather.weatherObservation.temperature + " degrees.");
+    if (weather.weatherObservation.weatherCondition !== "n/a"){
+      label2.set_text("Looks like there is " + weather.weatherObservation.weatherCondition + " in the sky.");
+      }
+    else {
+      label2.set_text("Looks like there is " + weather.weatherObservation.clouds + " in the sky.");
+    }
+    label3.set_text("Windspeed is " + weather.weatherObservation.windSpeed + " m/s")
+    // ...
+  });
+}
+
+//and run it
+Gtk.main();]]></code>
+
   </section>
 </page>
 
