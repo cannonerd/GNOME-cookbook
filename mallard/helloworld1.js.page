@@ -23,9 +23,9 @@
     <p>In this guide we'll construct a small program, Hello World, using JavaScript and GTK. We'll make a launcher icon for the application and create the necessary autotools to build your project. This guide will have the following parts:</p>
       
     <list>
-      <item><p> HelloWorld.js </p></item>
-      <item><p> HelloWorld.desctop </p></item>
-      <item><p> HelloWorld and autotools </p></item>
+      <item><p> <link xref="#.js">HelloWorld.js</link> </p></item>
+      <item><p> <link xref="#.desktop">HelloWorld.desctop</link> </p></item>
+      <item><p> <link xref="#autotools">HelloWorld and autotools</link> </p></item>
     </list> 
       
     <p>To do and run all the code examples yourself, you need an editor to write code in, terminal and GNOME 3. or higher installed into your computer.</p>
