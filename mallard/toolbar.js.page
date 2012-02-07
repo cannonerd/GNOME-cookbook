@@ -24,9 +24,9 @@
     How to make a toolbar and how it works. With toolbars you create buttons, pack them into the toolbar container, and listen for signals when those buttons are activated. In this section we will go thorought the following parts
     </p>
     <list>
-      <item><p> code for toolbar</p></item>
-      <item><p> connecting to a signal</p></item>
-      <item><p> custom widgets for a toolbar </p></item>
+      <item><p><link xref="#code for toolbar"> code for toolbar</link></p></item>
+      <item><p><link xref="#signal"> connecting to a signal</link></p></item>
+      <item><p><link xref="#weatherapp.js"> custom widgets for a toolbar</link> </p></item>
     </list> 
   </synopsis>
   <section id="code for toolbar">
