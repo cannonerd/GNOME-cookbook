@@ -33,15 +33,23 @@
   <title>Code for toolbar</title>
   <p>The code itself is quite simple. You just create a toolbar instance and insert the needed objects inside the toolbar. </p>
   <code mime="text/javascript" style="numbered"><![CDATA[
-  var toolbar = new Gtk.Toolbar();
-  toolbar.set_style(Gtk.ToolbarStyle.ICONS);
-  var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
-  toolbar.insert(buttonQuit, 0)
+var mytoolbar = new Gtk.Toolbar();
+mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
+mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
+//mytoolbar.set_orientation(Gtk.Orientation.HORIZONTAL);
+var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
+var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
+var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
+mytoolbar.set_hexpand(true);
+mytoolbar.add(buttonOpen)
+mytoolbar.add(buttonQuit)
+mytoolbar.add(buttonSave)
+tool_box.add(mytoolbar, true, true, 0);
 
-  //remember to add and show your toolbar in the correct box.
+//remember to add and show your toolbar in the correct box.
 
-  your_box.add(toolbar);
-  your_box.show_all();]]></code>
+your_box.add(toolbar);
+your_box.show_all();]]></code>
   <p>As you see, the code itself it's quite simple. Showing just a button in this case doesn't do the trick, the buttom must be connected to a signal. In this case the buttonQuit should be connected to Gtk.main_quit()</p>
   </section>
   <section id="signal">
