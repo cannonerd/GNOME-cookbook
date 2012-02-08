@@ -48,10 +48,18 @@ foom.set_submenu(foomenu);
 var bar = new Gtk.MenuItem.new_with_label("bar");
 foomenu.append(bar);
 
+var barmenu = new Gtk.Menu();
+var barm = new Gtk.MenuItem.new_with_label("Bar");
+barm.set_submenu(barmenu);
+
+var foo = new Gtk.MenuItem.new_with_label("foo");
+barmenu.append(foo);
+
 menubar.append(filem);
 menubar.append(foom);
+menubar.append(barm);
 
-appmenu_box.add(menubar, false, false, 0);
+appmenu_box.add(menubar);
 
 
 for (i in Gtk.Menu) {
@@ -68,15 +76,17 @@ print(i);
 
 //toolbar-stuff
 var mytoolbar = new Gtk.Toolbar();
+mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
 mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
-mytoolbar.set_orientation(Gtk.Orientation.HORIZONTAL);
+//mytoolbar.set_orientation(Gtk.Orientation.HORIZONTAL);
 var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
 var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
 var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
-mytoolbar.insert(buttonOpen, 0)
-mytoolbar.insert(buttonQuit, 1)
-mytoolbar.insert(buttonSave, 2)
-tool_box.add(mytoolbar, false, false, 0);
+mytoolbar.set_hexpand(true);
+mytoolbar.add(buttonOpen)
+mytoolbar.add(buttonQuit)
+mytoolbar.add(buttonSave)
+tool_box.add(mytoolbar, true, true, 0);
 
 var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
 var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
