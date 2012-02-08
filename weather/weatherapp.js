@@ -27,16 +27,56 @@ label2 = new Gtk.Label({label: "Looking in the sky..."});
 label3 = new Gtk.Label({label: ""});
 
 var tool_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+var appmenu_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
+toolweather_box.add(appmenu_box);
 toolweather_box.add(tool_box);
 
 var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
 toolweather_box.add(weather_box);
+
+//application menu-stuff
+var menubar = new Gtk.MenuBar();
+
+var filemenu = new Gtk.Menu();
+var filem = new Gtk.MenuItem.new_with_label("File");
+filem.set_submenu(filemenu);
+
+var foomenu = new Gtk.Menu();
+var foom = new Gtk.MenuItem.new_with_label("Foo");
+foom.set_submenu(foomenu);
+
+var bar = new Gtk.MenuItem.new_with_label("bar");
+foomenu.append(bar);
+
+menubar.append(filem);
+menubar.append(foom);
+
+appmenu_box.add(menubar, false, false, 0);
+
+
+for (i in Gtk.Menu) {
+print(i);
+}
+print("--");
+for (i in Gtk.MenuItem) {
+print(i);
+}
+print("--");
+for (i in Gtk.MenuBar) {
+print(i);
+}
+
 //toolbar-stuff
-var toolbar = new Gtk.Toolbar();
-toolbar.set_style(Gtk.ToolbarStyle.ICONS);
+var mytoolbar = new Gtk.Toolbar();
+mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
+mytoolbar.set_orientation(Gtk.Orientation.HORIZONTAL);
 var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
-toolbar.insert(buttonQuit, 0)
-tool_box.add(toolbar);
+var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
+var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
+mytoolbar.insert(buttonOpen, 0)
+mytoolbar.insert(buttonQuit, 1)
+mytoolbar.insert(buttonSave, 2)
+tool_box.add(mytoolbar, false, false, 0);
 
 var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
 var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
@@ -61,6 +101,8 @@ weather_label.add(label3, false, false, 0);
 weather_icon.add(weatherIcon, true, true, 0);
 
 //show everything you have done
+appmenu_box.show_all();
+tool_box.show_all();
 toolweather_box.show_all();
 icao_box.show_all();
 labelicon_box.show_all();
