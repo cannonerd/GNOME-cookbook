@@ -44,15 +44,11 @@ var mytoolbar = new Gtk.Toolbar();
 mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
 mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
 var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
-var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
 buttonOpen.connect("clicked", function() {
-  print("KLIKS!");
-});
-buttonSave.connect("clicked", function() {
+  //TODO: open a list of ICAO stations
   print("KLIKS!");
 });
 mytoolbar.insert(buttonOpen, 0)
-mytoolbar.insert(buttonSave, 1)
 mytoolbar.show_all();
 weather_box.add(mytoolbar);
 
