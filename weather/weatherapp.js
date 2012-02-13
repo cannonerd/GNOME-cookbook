@@ -43,12 +43,16 @@ print(i);
 var mytoolbar = new Gtk.Toolbar();
 mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
 mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
-var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
 var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
 var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
+buttonOpen.connect("clicked", function() {
+  print("KLIKS!");
+});
+buttonSave.connect("clicked", function() {
+  print("KLIKS!");
+});
 mytoolbar.insert(buttonOpen, 0)
-mytoolbar.insert(buttonQuit, 1)
-mytoolbar.insert(buttonSave, 2)
+mytoolbar.insert(buttonSave, 1)
 mytoolbar.show_all();
 weather_box.add(mytoolbar);
 
