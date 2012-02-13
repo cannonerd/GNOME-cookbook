@@ -18,49 +18,14 @@ weatherwindow.connect("destroy", function(){Gtk.main_quit()});
 //We initialize the icon here, but deside the file later in geonames.js.
 var weatherIcon = new Gtk.Image();
 
-var toolweather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
-weatherwindow.add(toolweather_box);
-
 //Set some labels to your window
 label1 = new Gtk.Label({label: ""});
 label2 = new Gtk.Label({label: "Looking in the sky..."});   
 label3 = new Gtk.Label({label: ""});
 
-var tool_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
-var appmenu_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
-toolweather_box.add(appmenu_box);
-toolweather_box.add(tool_box);
 
 var weather_box = new Gtk.Box ({orientation: Gtk.Orientation.VERTICAL, spacing: 0});
-toolweather_box.add(weather_box);
-
-//application menu-stuff
-var menubar = new Gtk.MenuBar();
-
-var filemenu = new Gtk.Menu();
-var filem = new Gtk.MenuItem.new_with_label("File");
-filem.set_submenu(filemenu);
-
-var foomenu = new Gtk.Menu();
-var foom = new Gtk.MenuItem.new_with_label("Foo");
-foom.set_submenu(foomenu);
-
-var bar = new Gtk.MenuItem.new_with_label("bar");
-foomenu.append(bar);
-
-var barmenu = new Gtk.Menu();
-var barm = new Gtk.MenuItem.new_with_label("Bar");
-barm.set_submenu(barmenu);
-
-var foo = new Gtk.MenuItem.new_with_label("foo");
-barmenu.append(foo);
-
-menubar.append(filem);
-menubar.append(foom);
-menubar.append(barm);
-
-appmenu_box.add(menubar);
-
+weatherwindow.add(weather_box);
 
 for (i in Gtk.Menu) {
 print(i);
@@ -78,15 +43,14 @@ print(i);
 var mytoolbar = new Gtk.Toolbar();
 mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
 mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
-//mytoolbar.set_orientation(Gtk.Orientation.HORIZONTAL);
 var buttonQuit = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_QUIT);//();
 var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);//();
 var buttonSave = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_SAVE);//();
-mytoolbar.set_hexpand(true);
-mytoolbar.add(buttonOpen)
-mytoolbar.add(buttonQuit)
-mytoolbar.add(buttonSave)
-tool_box.add(mytoolbar, true, true, 0);
+mytoolbar.insert(buttonOpen, 0)
+mytoolbar.insert(buttonQuit, 1)
+mytoolbar.insert(buttonSave, 2)
+mytoolbar.show_all();
+weather_box.add(mytoolbar);
 
 var icao_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
 var labelicon_box = new Gtk.Box ({orientation: Gtk.Orientation.HORIZONTAL, spacing: 0});
@@ -111,9 +75,6 @@ weather_label.add(label3, false, false, 0);
 weather_icon.add(weatherIcon, true, true, 0);
 
 //show everything you have done
-appmenu_box.show_all();
-tool_box.show_all();
-toolweather_box.show_all();
 icao_box.show_all();
 labelicon_box.show_all();
 weather_box.show_all();
