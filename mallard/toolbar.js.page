@@ -54,7 +54,11 @@ your_box.show_all();]]></code>
   </section>
   <section id="signal">
   <title>Connecting to a signal</title>
-  <p></p>
+  <p>The wayt to get toolbar items to perform anything, you need to listen to the signals they are sending. Gtk.ToolButton has a signal called "clicked". You just need to connect the button to the signal and tell the button what to do. </p>
+  <code mime="text/javascript" style="numbered"><![CDATA[
+buttonOpen.connect("clicked", function() {
+print("KLIKS!");
+});]]></code>
   </section>
   <section id="weatherapp.js">
   <title>The weatherapp program with toolbar included.</title>
