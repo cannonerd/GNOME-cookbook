@@ -1,0 +1,53 @@
+For the decoding of the METAR (MÉTéorologique ("Weather") Aviation Régulière) weather data we use the following text items. If you want to use the webservice in a new language just translate the texts below and send the translation to info@geonames.org. We will then include the language in the webservice. 
+http://www.geonames.org/export/JSON-webservices.html#weather 
+
+Languages currently supported : English, Bulgarian, Russian, German, Spanish, Portuguese, Italian, Dutch,Finnish, French, Hebrew and Arabic 
+
+clouds.null = n/a 
+clouds.SKC = clear sky 
+clouds.CLR = clear sky 
+clouds.FEW = few clouds 
+clouds.SCT = scattered clouds 
+clouds.BKN = broken clouds 
+clouds.OVC = overcast 
+clouds.VV = vertical visibility 
+
+
+condition.null=n/a 
+condition.DZ=drizzle 
+condition.RA=rain 
+condition.SN=snow 
+condition.SG=snow grains 
+condition.IC=ice crystals 
+condition.PL=ice pellets 
+condition.GR=hail 
+condition.GS=small hail/snow pellets 
+condition.UP=unknown precipitation 
+condition.BR=mist 
+condition.FG=fog 
+condition.FU=smoke 
+condition.VA=volcanic ash 
+condition.SA=sand 
+condition.HZ=haze 
+condition.PY=spray 
+condition.DU=widespread dust 
+condition.SQ=squall 
+condition.SS=sandstorm 
+condition.DS=duststorm 
+condition.PO=well developed dust/sand whirls 
+condition.FC=funnel cloud 
+condition.+FC=tornado/waterspout 
+
+condition.-=light 
+condition.+=heavy 
+condition.VC=in vicinity: 
+
+
+condition.MI=shallow 
+condition.BC=patches 
+condition.SH=showers 
+condition.PR=partial 
+condition.TS=thunderstorm 
+condition.BL=blowing 
+condition.DR=drifting 
+condition.FZ=freezing 
