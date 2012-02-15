@@ -18,18 +18,18 @@ Application.prototype = {
     this.application.connect('activate', Lang.bind(this, this._initToolbar));
     this.application.connect('activate', Lang.bind(this, this._initMenu));
 
-    var entry = new Gtk.Entry();
-    entry.set_width_chars(4);
-    entry.set_max_length(4);
+    this.entry = new Gtk.Entry();
+    this.entry.set_width_chars(4);
+    this.entry.set_max_length(4);
     var label4 = new Gtk.Label({label: "Enter ICAO station for weather: "});
     var button1 = new Gtk.Button({label: "search!"});
 
     //some weather
-    entry.connect("key_press_event", function(widget, event) {
+    this.entry.connect("key_press_event", function(widget, event) {
       // FIXME: Get weather on enter (key 13)
-      if (entry.get_text().length === 4) {
+      if (this.entry.get_text().length === 4) {
         // Enough is enough
-        getWeatherForStation();
+        this._getWeatherForStation();
       }
       return false;
     });

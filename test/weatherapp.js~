@@ -25,7 +25,6 @@ Application.prototype = {
     var button1 = new Gtk.Button({label: "search!"});
 
     //some weather
-
     entry.connect("key_press_event", function(widget, event) {
       // FIXME: Get weather on enter (key 13)
       if (entry.get_text().length === 4) {
