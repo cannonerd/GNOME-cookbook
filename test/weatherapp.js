@@ -5,7 +5,6 @@ const WeatherService = imports.geonames;
 const Gtk = imports.gi.Gtk;
 const Gio = imports.gi.Gio;
 const Lang = imports.lang;
-
 const _ = imports.gettext.gettext;
 
 function Application() {
@@ -14,13 +13,10 @@ function Application() {
 Application.prototype = {
   _init: function() {
     this.application = new Gtk.Application({application_id: 'org.gnome.weatherapp'});
-    // This will require the *next* GNOME
-    // in current, instantiate a Gtk.Window as var myWindow, and call:
-    // this.application.add_window(myWindow);
     var appwindow = new Gtk.ApplicationWindow({ application: this.application, window_position: Gtk.WindowPosition.CENTER, hide_titlebar_when_maximized: true, title: _("WeatherApp") });
     this.application.add_window(appwindow);
     this.application.connect('activate', Lang.bind(this, this._initToolbar));
-    //this._initMenu();
+    this.application.connect('activate', Lang.bind(this, this._initMenu));
 
     var entry = new Gtk.Entry();
     entry.set_width_chars(4);
@@ -29,7 +25,6 @@ Application.prototype = {
     var button1 = new Gtk.Button({label: "search!"});
 
     //some weather
-
     entry.connect("key_press_event", function(widget, event) {
       // FIXME: Get weather on enter (key 13)
       if (entry.get_text().length === 4) {
@@ -69,7 +64,8 @@ Application.prototype = {
     });
     },
     
-    _initMenus: function() {let quitAction = new Gio.SimpleAction({ name: 'quit' });
+    _initMenus: function() {
+    let quitAction = new Gio.SimpleAction({ name: 'quit' });
 	  quitAction.connect('activate', Lang.bind(this,function() {this._mainWindow.window.destroy();
 	  }));
 	  this.application.add_action(quitAction);
