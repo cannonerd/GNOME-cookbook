@@ -13,14 +13,18 @@ function Application() {
 Application.prototype = {
   _init: function() {
     this.application = new Gtk.Application({application_id: 'org.gnome.weatherapp'});
-    var appwindow = new Gtk.ApplicationWindow({ application: this.application, window_position: Gtk.WindowPosition.CENTER, hide_titlebar_when_maximized: true, title: _("WeatherApp") });
-    this.application.add_window(appwindow);
+    var appwindow = new Gtk.ApplicationWindow({
+      application: this.application, 
+      window_position: Gtk.WindowPosition.CENTER, 
+      hide_titlebar_when_maximized: true, 
+      title: _("WeatherApp")
+    });
+ 
+    /*this.application.add_window(appwindow);
     this._initToolbar();
     this._initMenus();
-    //this.application.connect('activate', Lang.bind(this, this._initToolbar));
-    //this.application.connect('activate', Lang.bind(this, this._initMenus));
-
-    this.entry = new Gtk.Entry();
+    */
+   /* this.entry = new Gtk.Entry();
     this.entry.set_width_chars(4);
     this.entry.set_max_length(4);
     
@@ -42,7 +46,7 @@ Application.prototype = {
 
     this.button1.connect("clicked", function(){
       this._getWeatherForStation();
-    });
+    });                                                  */
     
   },
 
@@ -55,7 +59,6 @@ Application.prototype = {
       //this here works bit like signals. This code will be run when we have weather.
       if (error) { 
         this.label2.set_text("Suggested ICAO station does not exist Try EFHF");
-        return;
       }
       weatherIcon.file = GeoNames.getIcon(weather);
       
@@ -72,35 +75,15 @@ Application.prototype = {
   },
   
   _initMenus: function() {
-    return;
-    let quitAction = new Gio.SimpleAction({ name: 'quit' });
-    quitAction.connect('activate', Lang.bind(this,function() {
-      this._mainWindow.window.destroy();
-    }));
-    this.application.add_action(quitAction);
-    let menu = new Gio.Menu();
-    menu.append(_("Quit"), 'app.quit');
-
-    this.application.set_app_menu(menu);
-  },
+      this.label5 = new Gtk.Label({label: "this is a menu"});
+    },
    
   _initToolbar: function() {
-    //toolbar-stuff
-    var mytoolbar = new Gtk.Toolbar();
-    mytoolbar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR); 
-    mytoolbar.set_style(Gtk.ToolbarStyle.ICONS);
-    mytoolbar.show();
-    var buttonOpen = new Gtk.ToolButton.new_from_stock(Gtk.STOCK_OPEN);
-    buttonOpen.connect('clicked', Lang.bind(this, this._initButton));
-  },
+      this.label6= new Gtk.Label({label: "this is a toolbar"});
+   },
   
   _initButton: function () {
-    let clickedAction = new Gio.SimpleAction({ name: 'clicked' });
-    clickedAction.connect("button-clicked", Lang.bind(this,function() {
-      print("KLIKS!");
-    }));
-    //TODO: open a list of ICAO stations
-    buttonOpen.add.action(clickedAction);
+      this.label7 = new Gtk.Label({label: "this is a button function"});
   }
 };
 

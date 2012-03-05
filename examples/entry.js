@@ -10,18 +10,19 @@ Gtk.init(null, 0);
 
 /*-------------------------------------------*/
 myW = new Gtk.Window({type: Gtk.WindowType.TOPLEVEL});
-myW.title = "TestForm";
+myW.title = "Entry";
 myW.connect("destroy", function(){Gtk.main_quit()});
 grid = new Gtk.Grid();
 myW.add(grid);
 //plase Example Here:
 
-var entry = new Gtk.Entry({text: "Write something here"});
+var entry = new Gtk.Entry();
+entry.set_placeholder_text("Write something here");
 entry.set_width_chars(50);
-var label = new Gtk.Label({label: "This is an etry widget: "});
-var connectionbutton = new Gtk.Button({label: "It's contents are connected to the label after this button"});
+var label = new Gtk.Label({label: "Entry widget: "});
+var connectionbutton = new Gtk.Button({label: "Click to update label"});
 this.resultlabel = new Gtk.Label({
-  label: "The contents of the entry will be here after you click the button"
+  label: "Entry contents go here after the click"
 });
 connectionbutton.connect("clicked", function(widget, event) {
   var whatWasTyped = entry.get_text();
